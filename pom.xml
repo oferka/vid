@@ -12,9 +12,19 @@
     <artifactId>vid</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>vid</name>
+    <inceptionYear>2021</inceptionYear>
     <description>vid</description>
+    <url>https://github.com/oferka/vid</url>
+    <developers>
+        <developer>
+            <id>oferk</id>
+            <name>Ofer Karp</name>
+        </developer>
+    </developers>
     <properties>
         <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
     </properties>
     <modules>
         <module>account</module>
