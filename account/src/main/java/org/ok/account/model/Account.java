@@ -32,7 +32,6 @@ public class Account {
     @Getter
     private String name;
 
-
     @NotNull
     @Size(min = 2, max = 64)
     @NotBlank
