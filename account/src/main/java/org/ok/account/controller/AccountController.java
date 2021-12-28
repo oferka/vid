@@ -20,8 +20,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import static org.ok.account.controller.Paths.ACCOUNT_PATH;
-import static org.ok.account.controller.Paths.RANDOM_PATH;
+import static org.ok.account.controller.Paths.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
@@ -99,5 +98,15 @@ public class AccountController {
     public @NotNull ResponseEntity<Account> update(@Parameter(description = "Account to be updated") @RequestBody @NotNull @Valid Account account) {
         Optional<Account> updated = accountService.update(account);
         return updated.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @Operation(summary = "Return the number of existing accounts")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Accounts counted successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))}),
+            @ApiResponse(responseCode = "400", description = "Failed to count accounts", content = @Content) })
+    @GetMapping(path = COUNT_PATH)
+    public @NotNull ResponseEntity<Long> count() {
+        long count = accountService.count();
+        return ResponseEntity.ok(count);
     }
 }
