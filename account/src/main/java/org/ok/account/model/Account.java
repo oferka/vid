@@ -20,7 +20,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    private String id;
+    private Long id;
 
     @NotNull
     @Size(min = 2, max = 64)

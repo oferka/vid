@@ -27,7 +27,7 @@ public class AccountService {
                 .collect(Collectors.toList());
     }
 
-    public @NotNull Optional<Account> findById(@NotNull String id) {
+    public @NotNull Optional<Account> findById(@NotNull Long id) {
         return accountRepository.findById(id);
     }
 
@@ -60,7 +60,7 @@ public class AccountService {
         return accountRepository.saveAll(accounts);
     }
 
-    public Optional<Account> update(@NotNull String id, @NotNull Account account) {
+    public Optional<Account> update(@NotNull Long id, @NotNull Account account) {
         Optional<Account> result = Optional.empty();
         if(existsById(id)) {
             result = Optional.of(save(account));
@@ -68,7 +68,7 @@ public class AccountService {
         return result;
     }
 
-    public void deleteById(@NotNull String id) {
+    public void deleteById(@NotNull Long id) {
         accountRepository.deleteById(id);
     }
 
@@ -76,7 +76,7 @@ public class AccountService {
         return accountRepository.count();
     }
 
-    public boolean existsById(@NotNull String id) {
+    public boolean existsById(@NotNull Long id) {
         return accountRepository.existsById(id);
     }
 
