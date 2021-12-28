@@ -60,9 +60,9 @@ public class AccountService {
         return accountRepository.saveAll(accounts);
     }
 
-    public Optional<Account> update(@NotNull Long id, @NotNull Account account) {
+    public Optional<Account> update(@NotNull Account account) {
         Optional<Account> result = Optional.empty();
-        if(existsById(id)) {
+        if(existsById(account.getId())) {
             result = Optional.of(save(account));
         }
         return result;

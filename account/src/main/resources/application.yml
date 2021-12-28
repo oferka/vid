@@ -3,6 +3,8 @@ spring:
     name: "account"
 #  profiles:
 #    active: "csv-application-categories-provider, csv-vendors-provider, csv-applications-provider, csv-accounts-provider, csv-users-provider"
+  jpa:
+    show-sql: true
 
 server:
   port: 0

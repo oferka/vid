@@ -89,4 +89,15 @@ public class AccountController {
         accountService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @Operation(summary = "Update an account")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Account updated successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Account.class))}),
+            @ApiResponse(responseCode = "404", description = "Account not found", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Failed to update account", content = @Content) })
+    @PutMapping
+    public @NotNull ResponseEntity<Account> update(@Parameter(description = "Account to be updated") @RequestBody @NotNull @Valid Account account) {
+        Optional<Account> updated = accountService.update(account);
+        return updated.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
