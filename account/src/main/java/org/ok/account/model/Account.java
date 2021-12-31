@@ -23,19 +23,19 @@ public class Account {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 64)
+    @Size(min = 1, max = 64)
     @NotBlank
     @Getter
     private String symbol;
 
     @NotNull
-    @Size(min = 2, max = 64)
+    @Size(min = 1, max = 64)
     @NotBlank
     @Getter
     private String name;
 
     @NotNull
-    @Size(min = 2, max = 64)
+    @Size(min = 1, max = 64)
     @NotBlank
     @Getter
     private String sector;
