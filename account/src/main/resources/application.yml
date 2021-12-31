@@ -1,8 +1,8 @@
 spring:
   application:
     name: "account"
-#  profiles:
-#    active: "csv-application-categories-provider, csv-vendors-provider, csv-applications-provider, csv-accounts-provider, csv-users-provider"
+  profiles:
+    active: "random-content-provider"
 
 server:
   port: 0

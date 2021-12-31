@@ -3,6 +3,7 @@ package org.ok.account.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,4 +40,10 @@ public class Account {
     @NotBlank
     @Getter
     private String sector;
+
+    public Account(String symbol, String name, String sector) {
+        this.symbol = symbol;
+        this.name = name;
+        this.sector = sector;
+    }
 }
