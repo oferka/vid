@@ -80,7 +80,8 @@ public class AccountService {
         return accountRepository.existsById(id);
     }
 
-    public boolean exists(@NotNull @NotNull Account account) {
-        return existsById(account.getId());
+    public boolean exists(@NotNull Account account) {
+        Long id = account.getId();
+        return ((id != null) && existsById(id));
     }
 }
