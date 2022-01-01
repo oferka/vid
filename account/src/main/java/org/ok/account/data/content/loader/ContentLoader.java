@@ -26,7 +26,7 @@ public class ContentLoader {
     }
 
     public @NotNull Iterable<Account> ensureContentLoaded() {
-        List<Account> content = contentProvider.get(1000);
+        List<Account> content = contentProvider.get(10);
         Iterable<Account> unloadedContent = contentVerifier.findNotLoaded(content);
         if(!IterableUtils.isEmpty(unloadedContent)) {
             Iterable<Account> saved = accountService.saveAll(unloadedContent);
