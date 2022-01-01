@@ -3,21 +3,24 @@ package org.ok.account.repository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.ok.account.data.content.provider.ContentProvider;
 import org.ok.account.model.Account;
-import org.ok.account.sample.SampleAccountProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class AccountRepositoryTest {
 
     @Autowired
-    private AccountRepository accountElasticsearchRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    private SampleAccountProvider sampleAccountProvider;
+    private ContentProvider contentProvider;
 
     private long contentCountBefore;
 
@@ -25,42 +28,42 @@ class AccountRepositoryTest {
 
     @BeforeEach
     void captureContentStatus() {
-        contentCountBefore = accountElasticsearchRepository.count();
+        contentCountBefore = accountRepository.count();
     }
 
     @AfterEach
     void verifyContentStatusNotChanged() {
-        long contentCountAfter = accountElasticsearchRepository.count();
+        long contentCountAfter = accountRepository.count();
         assertEquals(contentCountBefore, contentCountAfter);
     }
 
     @Test
     void shouldSaveItem() {
-        Account item = sampleAccountProvider.getItem();
-        Account saved = accountElasticsearchRepository.save(item);
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
         assertEquals(item, saved);
-        accountElasticsearchRepository.delete(saved);
+        accountRepository.delete(saved);
     }
 
-//    @Test
-//    void shouldSaveItems() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        assertNotNull(saved);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldFindItemById() {
-//        Account item = sampleAccountProvider.getItem();
-//        Account saved = accountElasticsearchRepository.save(item);
-//        Optional<Account> foundItemOptional = accountElasticsearchRepository.findById(item.getId());
-//        assertTrue(foundItemOptional.isPresent());
-//        Account foundItem = foundItemOptional.get();
-//        assertEquals(item.getId(), foundItem.getId());
-//        accountElasticsearchRepository.delete(saved);
-//    }
-//
+    @Test
+    void shouldSaveItems() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        assertNotNull(saved);
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldFindItemById() {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        Optional<Account> foundItemOptional = accountRepository.findById(item.getId());
+        assertTrue(foundItemOptional.isPresent());
+        Account foundItem = foundItemOptional.get();
+        assertEquals(item.getId(), foundItem.getId());
+        accountRepository.delete(saved);
+    }
+
 //    @Test
 //    void shouldNotFindItemById() {
 //        Optional<Account> foundItemOptional = accountElasticsearchRepository.findById(getNonExistingId());

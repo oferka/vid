@@ -21,6 +21,12 @@ public class CSVContentProvider implements ContentProvider {
     }
 
     @Override
+    public @NotNull Account get() {
+        List<AccountLine> lines = csvReader.read();
+        return getAccount(lines.get(0));
+    }
+
+    @Override
     public List<Account> get(int numberOfItems) {
         List<AccountLine> lines = csvReader.read();
         List<Account> result =  new ArrayList<>();

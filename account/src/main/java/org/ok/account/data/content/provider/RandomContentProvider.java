@@ -25,6 +25,11 @@ public class RandomContentProvider implements ContentProvider {
     }
 
     @Override
+    public @NotNull Account get() {
+        return getAccount();
+    }
+
+    @Override
     public List<Account> get(int numberOfItems) {
         List<Account> result =  new ArrayList<>();
         for(int i=0; i<numberOfItems; i++) {
