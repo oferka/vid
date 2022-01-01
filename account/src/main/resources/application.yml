@@ -35,23 +35,10 @@ management:
           warning: 500
     shutdown:
       enabled: true
-#  health:
-#    applicationCategoryContent:
-#      enabled: true
-#    applicationContent:
-#      enabled: true
-#    accountContent:
-#      enabled: true
-#    userContent:
-#      enabled: true
-#    deviceContent:
-#      enabled: true
-#    livenessstate:
-#      enabled: true
-#    readinessstate:
-#      enabled: true
+  health:
+    content:
+      enabled: true
 
-## Configuring info endpoint
 info:
   app:
     name: account
