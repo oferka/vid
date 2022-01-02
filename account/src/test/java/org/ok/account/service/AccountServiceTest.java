@@ -97,12 +97,12 @@ class AccountServiceTest {
         accountRepository.deleteAll(saved);
     }
 
-//    @Test
-//    public void shouldNotFindByName() {
-//        List<Account> found = accountService.findByName(getNonExistingName());
-//        assertTrue(found.isEmpty());
-//    }
-//
+    @Test
+    public void shouldNotFindByName() {
+        List<Account> found = accountService.findByName(getNonExistingName());
+        assertTrue(found.isEmpty());
+    }
+
 //    @Test
 //    public void shouldFindBySector() {
 //        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
