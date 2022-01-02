@@ -120,31 +120,15 @@ class AccountServiceTest {
         assertTrue(found.isEmpty());
     }
 
-//    @Test
-//    public void shouldFindByCreatedDate() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        ZonedDateTime createdDate = items.get(0).getCreatedDate();
-//        List<Account> found = accountService.findByCreatedDate(createdDate);
-//        assertFalse(found.isEmpty());
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    public void shouldNotFindByCreatedDate() {
-//        List<Account> found = accountService.findByCreatedDate(getNonExistingDate());
-//        assertTrue(found.isEmpty());
-//    }
-//
-//    @Test
-//    public void shouldFindRandom() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Optional<Account> found = accountService.findRandom();
-//        assertTrue(found.isPresent());
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    public void shouldFindRandom() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Optional<Account> found = accountService.findRandom();
+        assertTrue(found.isPresent());
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    public void shouldSave() {
 //        Account item = sampleAccountProvider.getItem();
