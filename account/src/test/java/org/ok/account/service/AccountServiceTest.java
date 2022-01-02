@@ -166,6 +166,26 @@ class AccountServiceTest {
     }
 
     @Test
+    public void shouldDelete() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Account item = items.get(0);
+        Optional<Account> deleted = accountService.delete(item);
+        assertTrue(deleted.isPresent());
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    public void shouldNotDelete() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Account item = new Account(getNonExistingId(), items.get(0).getSymbol(), items.get(0).getName(), items.get(0).getSector());
+        Optional<Account> deleted = accountService.delete(item);
+        assertTrue(deleted.isEmpty());
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
     public void shouldDeleteById() {
         Account item = contentProvider.get();
         Account saved = accountRepository.save(item);
