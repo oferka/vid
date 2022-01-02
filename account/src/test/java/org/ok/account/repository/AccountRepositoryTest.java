@@ -7,6 +7,7 @@ import org.ok.account.data.content.provider.ContentProvider;
 import org.ok.account.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
@@ -123,41 +124,24 @@ class AccountRepositoryTest {
         assertTrue(foundItems.isEmpty());
     }
 
-//    @Test
-//    void shouldFindItemByCreatedDate() {
-//        Account item = sampleAccountProvider.getItem();
-//        Account saved = accountElasticsearchRepository.save(item);
-//        List<Account> foundItems = accountElasticsearchRepository.findByCreatedDate(item.getCreatedDate());
-//        assertFalse(foundItems.isEmpty());
-//        Account foundItem = foundItems.get(0);
-//        assertEquals(item.getId(), foundItem.getId());
-//        accountElasticsearchRepository.delete(saved);
-//    }
-//
-//    @Test
-//    void shouldNotFindItemByCreatedDate() {
-//        List<Account> foundItems = accountElasticsearchRepository.findByCreatedDate(getNonExistingDate());
-//        assertTrue(foundItems.isEmpty());
-//    }
-//
-//    @Test
-//    void shouldFindAllItems() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Iterable<Account> found = accountElasticsearchRepository.findAll();
-//        assertNotNull(found);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldFindAllItemsSortedById() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Iterable<Account> found = accountElasticsearchRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-//        assertNotNull(found);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    void shouldFindAllItems() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Iterable<Account> found = accountRepository.findAll();
+        assertNotNull(found);
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldFindAllItemsSortedById() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        assertNotNull(found);
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    void shouldFindAllItemsSortedByName() {
 //        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
