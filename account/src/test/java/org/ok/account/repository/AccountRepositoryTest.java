@@ -89,17 +89,17 @@ class AccountRepositoryTest {
         assertTrue(foundItems.isEmpty());
     }
 
-//    @Test
-//    void shouldFindItemByName() {
-//        Account item = sampleAccountProvider.getItem();
-//        Account saved = accountElasticsearchRepository.save(item);
-//        List<Account> foundItems = accountElasticsearchRepository.findByName(item.getName());
-//        assertFalse(foundItems.isEmpty());
-//        Account foundItem = foundItems.get(0);
-//        assertEquals(item.getName(), foundItem.getName());
-//        accountElasticsearchRepository.delete(saved);
-//    }
-//
+    @Test
+    void shouldFindItemByName() {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        List<Account> foundItems = accountRepository.findByName(item.getName());
+        assertFalse(foundItems.isEmpty());
+        Account foundItem = foundItems.get(0);
+        assertEquals(item.getName(), foundItem.getName());
+        accountRepository.delete(saved);
+    }
+
 //    @Test
 //    void shouldNotFindItemByName() {
 //        List<Account> foundItems = accountElasticsearchRepository.findByName(getNonExistingName());
