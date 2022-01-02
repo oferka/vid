@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.containsString;
@@ -173,5 +174,23 @@ class AccountControllerTest {
                 .andExpect(status().isNotFound())
                 .andReturn();
         assertNotNull(mvcResult);
+    }
+
+    @Test
+    public void shouldUpdate() throws Exception {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        Long id = saved.getId();
+        MvcResult mvcResult = mvc.perform(put(format("/%s", ACCOUNT_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(item))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(mvcResult);
+        Optional<Account> updated = accountRepository.findById(id);
+        assertTrue(updated.isPresent());
+        accountRepository.deleteById(id);
     }
 }
