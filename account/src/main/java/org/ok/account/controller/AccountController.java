@@ -84,9 +84,9 @@ public class AccountController {
             @ApiResponse(responseCode = "204", description = "Account successfully deleted by id"),
             @ApiResponse(responseCode = "400", description = "Failed to delete account by id", content = @Content) })
     @DeleteMapping("/{id}")
-    public @NotNull ResponseEntity<Void> deleteById(@Parameter(description = "The id of the account to be deleted") @PathVariable("id") @NotNull Long id) {
-        accountService.deleteById(id);
-        return ResponseEntity.noContent().build();
+    public @NotNull ResponseEntity<Account> deleteById(@Parameter(description = "The id of the account to be deleted") @PathVariable("id") @NotNull Long id) {
+        Optional<Account> deleted = accountService.deleteById(id);
+        return deleted.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Update an account")
