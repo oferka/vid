@@ -7,6 +7,8 @@ import org.ok.account.data.content.provider.ContentProvider;
 import org.ok.account.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -160,24 +162,24 @@ class AccountRepositoryTest {
         accountRepository.deleteAll(saved);
     }
 
-//    @Test
-//    void shouldFindAllItemsPaged() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Page<Account> found = accountElasticsearchRepository.findAll(PageRequest.of(0, 4));
-//        assertNotNull(found);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldFindAllItemsPagedAndSorted() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Page<Account> found = accountElasticsearchRepository.findAll(PageRequest.of(0, 4, Sort.by(Sort.Direction.ASC, "name")));
-//        assertNotNull(found);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    void shouldFindAllItemsPaged() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Page<Account> found = accountRepository.findAll(PageRequest.of(0, 4));
+        assertNotNull(found);
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldFindAllItemsPagedAndSorted() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Page<Account> found = accountRepository.findAll(PageRequest.of(0, 4, Sort.by(Sort.Direction.ASC, "name")));
+        assertNotNull(found);
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    void shouldExistById() {
 //        Account item = sampleAccountProvider.getItem();
