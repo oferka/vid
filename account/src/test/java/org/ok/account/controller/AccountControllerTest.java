@@ -134,16 +134,19 @@ class AccountControllerTest {
         assertNotNull(id);
     }
 
-//    @Test
-//    public void shouldNotDeleteById() throws Exception {
-//        MvcResult mvcResult = mvc.perform(delete(format("/%s/{id}", ACCOUNT_PATH), getNonExistingId())
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andDo(log())
-//                .andExpect(status().isNotFound())
-//                .andReturn();
-//        assertNotNull(mvcResult);
-//    }
+    @Test
+    public void shouldNotDelete() throws Exception {
+        Account item = contentProvider.get();
+        Account toBeDeleted = new Account(getNonExistingId(), item.getSymbol(), item.getName(), item.getSector());
+        MvcResult mvcResult = mvc.perform(delete(format("/%s", ACCOUNT_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(toBeDeleted))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isNotFound())
+                .andReturn();
+        assertNotNull(mvcResult);
+    }
 
     @Test
     public void shouldDeleteById() throws Exception {
