@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class AccountServiceTest {
@@ -48,5 +48,16 @@ class AccountServiceTest {
         List<Account> foundItems = accountService.findAll();
         assertNotNull(foundItems);
         accountRepository.deleteAll(savedItems);
+    }
+
+    @Test
+    public void shouldFindById() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Long id = items.get(0).getId();
+        Optional<Account> found = accountService.findById(id);
+        assertTrue(found.isPresent());
+        assertEquals(id, found.get().getId());
+        accountRepository.deleteAll(saved);
     }
 }
