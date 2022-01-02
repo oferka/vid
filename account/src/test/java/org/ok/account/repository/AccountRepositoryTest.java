@@ -189,12 +189,12 @@ class AccountRepositoryTest {
         accountRepository.delete(saved);
     }
 
-//    @Test
-//    void shouldNotExistById() {
-//        boolean exists = accountElasticsearchRepository.existsById(getNonExistingId());
-//        assertFalse(exists);
-//    }
-//
+    @Test
+    void shouldNotExistById() {
+        boolean exists = accountRepository.existsById(getNonExistingId());
+        assertFalse(exists);
+    }
+
 //    @Test
 //    void shouldCount() {
 //        long countBefore = accountElasticsearchRepository.count();
