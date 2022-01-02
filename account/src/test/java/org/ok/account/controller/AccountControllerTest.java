@@ -71,4 +71,20 @@ class AccountControllerTest {
         assertNotNull(mvcResult);
         accountRepository.deleteAll(saved);
     }
+
+    @Test
+    public void shouldFindById() throws Exception {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Long id = items.get(0).getId();
+        MvcResult mvcResult = mvc.perform(get(format("/%s/{id}", ACCOUNT_PATH), id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(id.toString())))
+                .andReturn();
+        assertNotNull(mvcResult);
+        accountRepository.deleteAll(saved);
+    }
 }
