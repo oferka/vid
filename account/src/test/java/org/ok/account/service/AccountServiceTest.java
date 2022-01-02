@@ -1,13 +1,9 @@
 package org.ok.account.service;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.ok.account.data.content.provider.ContentProvider;
+import org.ok.account.AccountTest;
 import org.ok.account.model.Account;
-import org.ok.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,32 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.ok.account.TestDataUtils.getNonExistingId;
 import static org.ok.account.TestDataUtils.getNonExistingName;
 
-@SpringBootTest
-class AccountServiceTest {
+class AccountServiceTest extends AccountTest {
 
     @Autowired
     private AccountService accountService;
-
-    @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private ContentProvider contentProvider;
-
-    private long contentCountBefore;
-
-    private final int numberOfItemsToLoad = 18;
-
-    @BeforeEach
-    void captureContentStatus() {
-        contentCountBefore = accountRepository.count();
-    }
-
-    @AfterEach
-    void verifyContentStatusNotChanged() {
-        long contentCountAfter = accountRepository.count();
-        assertEquals(contentCountBefore, contentCountAfter);
-    }
 
     @Test
     public void shouldFindAll() {

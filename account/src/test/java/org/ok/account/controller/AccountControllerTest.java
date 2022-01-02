@@ -2,15 +2,10 @@ package org.ok.account.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.ok.account.AccountApplication;
-import org.ok.account.data.content.provider.ContentProvider;
+import org.ok.account.AccountTest;
 import org.ok.account.model.Account;
-import org.ok.account.repository.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -30,31 +25,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = AccountApplication.class)
-class AccountControllerTest {
+class AccountControllerTest extends AccountTest {
 
     private MockMvc mvc;
-
-    @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private ContentProvider contentProvider;
-
-    private long contentCountBefore;
-
-    private final int numberOfItemsToLoad = 10;
-
-    @BeforeEach
-    void captureContentStatus() {
-        contentCountBefore = accountRepository.count();
-    }
-
-    @AfterEach
-    void verifyContentStatusNotChanged() {
-        long contentCountAfter = accountRepository.count();
-        assertEquals(contentCountBefore, contentCountAfter);
-    }
 
     @BeforeEach
     public void setup(WebApplicationContext webApplicationContext) {
