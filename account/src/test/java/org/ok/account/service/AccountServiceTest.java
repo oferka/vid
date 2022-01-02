@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.ok.account.TestDataUtils.getNonExistingId;
 
 @SpringBootTest
 class AccountServiceTest {
@@ -59,5 +60,11 @@ class AccountServiceTest {
         assertTrue(found.isPresent());
         assertEquals(id, found.get().getId());
         accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    public void shouldNotFindById() {
+        Optional<Account> found = accountService.findById(getNonExistingId());
+        assertTrue(found.isEmpty());
     }
 }
