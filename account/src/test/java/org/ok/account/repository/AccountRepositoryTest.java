@@ -180,15 +180,15 @@ class AccountRepositoryTest {
         accountRepository.deleteAll(saved);
     }
 
-//    @Test
-//    void shouldExistById() {
-//        Account item = sampleAccountProvider.getItem();
-//        Account saved = accountElasticsearchRepository.save(item);
-//        boolean exists = accountElasticsearchRepository.existsById(saved.getId());
-//        assertTrue(exists);
-//        accountElasticsearchRepository.delete(saved);
-//    }
-//
+    @Test
+    void shouldExistById() {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        boolean exists = accountRepository.existsById(saved.getId());
+        assertTrue(exists);
+        accountRepository.delete(saved);
+    }
+
 //    @Test
 //    void shouldNotExistById() {
 //        boolean exists = accountElasticsearchRepository.existsById(getNonExistingId());
