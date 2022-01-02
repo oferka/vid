@@ -145,26 +145,26 @@ class AccountServiceTest {
         accountRepository.deleteAll(items);
     }
 
-//    @Test
-//    public void shouldUpdate() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Account item = items.get(0);
-//        Optional<Account> updated = accountService.update(item.getId(), item);
-//        assertTrue(updated.isPresent());
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    public void shouldNotUpdate() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Account item = items.get(0);
-//        Optional<Account> updated = accountService.update(getNonExistingId(), item);
-//        assertTrue(updated.isEmpty());
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    public void shouldUpdate() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Account item = items.get(0);
+        Optional<Account> updated = accountService.update(item);
+        assertTrue(updated.isPresent());
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    public void shouldNotUpdate() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Account item = new Account(getNonExistingId(), items.get(0).getSymbol(), items.get(0).getName(), items.get(0).getSector());
+        Optional<Account> updated = accountService.update(item);
+        assertTrue(updated.isEmpty());
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    public void shouldDeleteById() {
 //        Account item = sampleAccountProvider.getItem();
