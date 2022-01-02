@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -230,18 +231,18 @@ class AccountRepositoryTest {
         EmptyResultDataAccessException exception = Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
             accountRepository.deleteById(getNonExistingId());
         });
-        Assertions.assertTrue(exception.getMessage().contains("entity with id"));
+        Assertions.assertTrue(Objects.requireNonNull(exception.getMessage()).contains("entity with id"));
     }
 
-//    @Test
-//    void shouldDeleteItems() {
-//        long countBefore = accountElasticsearchRepository.count();
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        int numberOfItemsToDelete = 3;
-//        accountElasticsearchRepository.deleteAll(items.subList(0, numberOfItemsToDelete));
-//        long countAfter = accountElasticsearchRepository.count();
-//        assertEquals((countBefore + numberOfItemsToLoad - numberOfItemsToDelete), countAfter);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
+    @Test
+    void shouldDeleteItems() {
+        long countBefore = accountRepository.count();
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        int numberOfItemsToDelete = 3;
+        accountRepository.deleteAll(items.subList(0, numberOfItemsToDelete));
+        long countAfter = accountRepository.count();
+        assertEquals((countBefore + numberOfItemsToLoad - numberOfItemsToDelete), countAfter);
+        accountRepository.deleteAll(saved);
+    }
 }
