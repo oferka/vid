@@ -24,8 +24,7 @@ import static java.lang.String.format;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ok.account.TestDataUtils.getNonExistingId;
-import static org.ok.account.controller.Paths.ACCOUNT_PATH;
-import static org.ok.account.controller.Paths.COUNT_PATH;
+import static org.ok.account.controller.Paths.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -102,6 +101,19 @@ class AccountControllerTest {
                 .andExpect(status().isNotFound())
                 .andReturn();
         assertNotNull(mvcResult);
+    }
+
+    @Test
+    public void shouldFindRandom() throws Exception {
+        MvcResult mvcResult = mvc.perform(get(format("/%s/%s", ACCOUNT_PATH, RANDOM_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(mvcResult);
+        Integer id = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.id");
+        assertNotNull(id);
     }
 
     @Test
