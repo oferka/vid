@@ -195,16 +195,16 @@ class AccountRepositoryTest {
         assertFalse(exists);
     }
 
-//    @Test
-//    void shouldCount() {
-//        long countBefore = accountElasticsearchRepository.count();
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        long countAfter = accountElasticsearchRepository.count();
-//        assertEquals(countAfter, countBefore + numberOfItemsToLoad);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    void shouldCount() {
+        long countBefore = accountRepository.count();
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        long countAfter = accountRepository.count();
+        assertEquals(countAfter, countBefore + numberOfItemsToLoad);
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    void shouldDeleteItem() {
 //        Account item = sampleAccountProvider.getItem();
