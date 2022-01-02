@@ -24,8 +24,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ok.account.TestDataUtils.getNonExistingId;
 import static org.ok.account.controller.Paths.ACCOUNT_PATH;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -116,5 +115,21 @@ class AccountControllerTest {
         assertNotNull(mvcResult);
         Integer id = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.id");
         accountRepository.deleteById(id.longValue());
+    }
+
+    @Test
+    public void shouldDeleteById() throws Exception {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        Long id = saved.getId();
+        MvcResult mvcResult = mvc.perform(delete(format("/%s/{id}", ACCOUNT_PATH), id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(mvcResult);
+        boolean exists = accountRepository.existsById(id);
+        assertFalse(exists);
     }
 }
