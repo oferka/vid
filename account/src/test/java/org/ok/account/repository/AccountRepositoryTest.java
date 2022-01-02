@@ -100,23 +100,23 @@ class AccountRepositoryTest {
         accountRepository.delete(saved);
     }
 
-//    @Test
-//    void shouldNotFindItemByName() {
-//        List<Account> foundItems = accountElasticsearchRepository.findByName(getNonExistingName());
-//        assertTrue(foundItems.isEmpty());
-//    }
-//
-//    @Test
-//    void shouldFindItemBySector() {
-//        Account item = sampleAccountProvider.getItem();
-//        Account saved = accountElasticsearchRepository.save(item);
-//        List<Account> foundItems = accountElasticsearchRepository.findBySector(item.getSector());
-//        assertFalse(foundItems.isEmpty());
-//        Account foundItem = foundItems.get(0);
-//        assertEquals(item.getId(), foundItem.getId());
-//        accountElasticsearchRepository.delete(saved);
-//    }
-//
+    @Test
+    void shouldNotFindItemByName() {
+        List<Account> foundItems = accountRepository.findByName(getNonExistingName());
+        assertTrue(foundItems.isEmpty());
+    }
+
+    @Test
+    void shouldFindItemBySector() {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        List<Account> foundItems = accountRepository.findBySector(item.getSector());
+        assertFalse(foundItems.isEmpty());
+        Account foundItem = foundItems.get(0);
+        assertEquals(item.getSector(), foundItem.getSector());
+        accountRepository.delete(saved);
+    }
+
 //    @Test
 //    void shouldNotFindItemBySector() {
 //        List<Account> foundItems = accountElasticsearchRepository.findByName(getNonExistingName());
