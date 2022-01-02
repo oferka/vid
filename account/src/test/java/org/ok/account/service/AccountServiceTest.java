@@ -129,14 +129,14 @@ class AccountServiceTest {
         accountRepository.deleteAll(saved);
     }
 
-//    @Test
-//    public void shouldSave() {
-//        Account item = sampleAccountProvider.getItem();
-//        Account saved = accountService.save(item);
-//        assertEquals(saved, item);
-//        accountElasticsearchRepository.delete(item);
-//    }
-//
+    @Test
+    public void shouldSave() {
+        Account item = contentProvider.get();
+        Account saved = accountService.save(item);
+        assertEquals(saved, item);
+        accountRepository.delete(item);
+    }
+
 //    @Test
 //    public void shouldSaveAll() {
 //        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
