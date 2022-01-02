@@ -25,6 +25,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ok.account.TestDataUtils.getNonExistingId;
 import static org.ok.account.controller.Paths.ACCOUNT_PATH;
+import static org.ok.account.controller.Paths.COUNT_PATH;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -192,5 +193,33 @@ class AccountControllerTest {
         Optional<Account> updated = accountRepository.findById(id);
         assertTrue(updated.isPresent());
         accountRepository.deleteById(id);
+    }
+
+    @Test
+    public void shouldNotUpdate() throws Exception {
+        Account item = contentProvider.get();
+        Account toBeUpdated = new Account(getNonExistingId(), item.getSymbol(), item.getName(), item.getSector());
+        MvcResult mvcResult = mvc.perform(put(format("/%s", ACCOUNT_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(toBeUpdated))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isNotFound())
+                .andReturn();
+        assertNotNull(mvcResult);
+    }
+
+    @Test
+    public void shouldCount() throws Exception {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        MvcResult mvcResult = mvc.perform(get(format("/%s/%s", ACCOUNT_PATH, COUNT_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(mvcResult);
+        accountRepository.deleteAll(saved);
     }
 }
