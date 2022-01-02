@@ -137,14 +137,14 @@ class AccountServiceTest {
         accountRepository.delete(item);
     }
 
-//    @Test
-//    public void shouldSaveAll() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountService.saveAll(items);
-//        assertNotNull(saved);
-//        accountElasticsearchRepository.deleteAll(items);
-//    }
-//
+    @Test
+    public void shouldSaveAll() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountService.saveAll(items);
+        assertNotNull(saved);
+        accountRepository.deleteAll(items);
+    }
+
 //    @Test
 //    public void shouldUpdate() {
 //        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
