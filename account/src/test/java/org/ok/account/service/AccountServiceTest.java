@@ -86,17 +86,17 @@ class AccountServiceTest {
         assertTrue(found.isEmpty());
     }
 
-//    @Test
-//    public void shouldFindByName() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        String name = items.get(0).getName();
-//        List<Account> found = accountService.findByName(name);
-//        assertFalse(found.isEmpty());
-//        assertEquals(name, found.get(0).getName());
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    public void shouldFindByName() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        String name = items.get(0).getName();
+        List<Account> found = accountService.findByName(name);
+        assertFalse(found.isEmpty());
+        assertEquals(name, found.get(0).getName());
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    public void shouldNotFindByName() {
 //        List<Account> found = accountService.findByName(getNonExistingName());
