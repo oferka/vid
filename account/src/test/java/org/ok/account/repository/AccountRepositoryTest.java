@@ -117,12 +117,12 @@ class AccountRepositoryTest {
         accountRepository.delete(saved);
     }
 
-//    @Test
-//    void shouldNotFindItemBySector() {
-//        List<Account> foundItems = accountElasticsearchRepository.findByName(getNonExistingName());
-//        assertTrue(foundItems.isEmpty());
-//    }
-//
+    @Test
+    void shouldNotFindItemBySector() {
+        List<Account> foundItems = accountRepository.findByName(getNonExistingName());
+        assertTrue(foundItems.isEmpty());
+    }
+
 //    @Test
 //    void shouldFindItemByCreatedDate() {
 //        Account item = sampleAccountProvider.getItem();
