@@ -79,6 +79,16 @@ public class AccountController {
         return new ResponseEntity<>(saved, httpHeaders, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Delete an account")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Account successfully deleted"),
+            @ApiResponse(responseCode = "400", description = "Failed to delete account", content = @Content) })
+    @DeleteMapping()
+    public @NotNull ResponseEntity<Account> delete(@Parameter(description = "Account to be deleted") @RequestBody @NotNull @Valid Account account) {
+        Optional<Account> deleted = accountService.delete(account);
+        return deleted.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @Operation(summary = "Delete an account by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Account successfully deleted by id"),

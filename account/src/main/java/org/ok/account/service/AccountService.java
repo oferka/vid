@@ -69,9 +69,7 @@ public class AccountService {
     }
 
     public Optional<Account> delete(@NotNull Account account) {
-        Optional<Account> item = findById(account.getId());
-        item.ifPresent(deleted -> accountRepository.deleteById(deleted.getId()));
-        return item;
+        return deleteById(account.getId());
     }
 
     public Optional<Account> deleteById(@NotNull Long id) {
