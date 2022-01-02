@@ -137,29 +137,29 @@ class AccountRepositoryTest {
     void shouldFindAllItemsSortedById() {
         List<Account> items = contentProvider.get(numberOfItemsToLoad);
         Iterable<Account> saved = accountRepository.saveAll(items);
-        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         assertNotNull(found);
         accountRepository.deleteAll(saved);
     }
 
-//    @Test
-//    void shouldFindAllItemsSortedByName() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Iterable<Account> found = accountElasticsearchRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
-//        assertNotNull(found);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldFindAllItemsSortedBySector() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        Iterable<Account> found = accountElasticsearchRepository.findAll(Sort.by(Sort.Direction.ASC, "sector"));
-//        assertNotNull(found);
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    void shouldFindAllItemsSortedByName() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+        assertNotNull(found);
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldFindAllItemsSortedBySector() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.DESC, "sector"));
+        assertNotNull(found);
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    void shouldFindAllItemsPaged() {
 //        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
