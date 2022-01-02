@@ -9,7 +9,6 @@ import org.ok.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,17 +68,17 @@ class AccountServiceTest {
         assertTrue(found.isEmpty());
     }
 
-//    @Test
-//    public void shouldFindBySymbol() {
-//        List<Account> items = sampleAccountProvider.getItems(numberOfItemsToLoad);
-//        Iterable<Account> saved = accountElasticsearchRepository.saveAll(items);
-//        String symbol = items.get(0).getSymbol();
-//        List<Account> found = accountService.findBySymbol(symbol);
-//        assertFalse(found.isEmpty());
-//        assertEquals(symbol, found.get(0).getSymbol());
-//        accountElasticsearchRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    public void shouldFindBySymbol() {
+        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        String symbol = items.get(0).getSymbol();
+        List<Account> found = accountService.findBySymbol(symbol);
+        assertFalse(found.isEmpty());
+        assertEquals(symbol, found.get(0).getSymbol());
+        accountRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    public void shouldNotFindBySymbol() {
 //        List<Account> found = accountService.findBySymbol(getNonExistingName());
