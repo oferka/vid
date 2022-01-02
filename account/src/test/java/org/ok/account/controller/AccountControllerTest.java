@@ -1,5 +1,7 @@
 package org.ok.account.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.ok.account.TestDataUtils.getNonExistingId;
 import static org.ok.account.controller.Paths.ACCOUNT_PATH;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -98,5 +101,20 @@ class AccountControllerTest {
                 .andExpect(status().isNotFound())
                 .andReturn();
         assertNotNull(mvcResult);
+    }
+
+    @Test
+    public void shouldSave() throws Exception {
+        Account item = contentProvider.get();
+        MvcResult mvcResult = mvc.perform(post(format("/%s", ACCOUNT_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(item))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isCreated())
+                .andReturn();
+        assertNotNull(mvcResult);
+        Integer id = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.id");
+        accountRepository.deleteById(id.longValue());
     }
 }
