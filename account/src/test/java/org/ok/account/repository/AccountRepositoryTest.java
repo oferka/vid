@@ -228,9 +228,7 @@ class AccountRepositoryTest {
 
     @Test
     void shouldNotDeleteById() {
-        EmptyResultDataAccessException exception = Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
-            accountRepository.deleteById(getNonExistingId());
-        });
+        EmptyResultDataAccessException exception = Assertions.assertThrows(EmptyResultDataAccessException.class, () -> accountRepository.deleteById(getNonExistingId()));
         Assertions.assertTrue(Objects.requireNonNull(exception.getMessage()).contains("entity with id"));
     }
 
