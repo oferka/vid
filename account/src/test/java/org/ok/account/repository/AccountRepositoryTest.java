@@ -1,12 +1,14 @@
 package org.ok.account.repository;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.ok.account.data.content.provider.ContentProvider;
 import org.ok.account.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -223,11 +225,14 @@ class AccountRepositoryTest {
         assertFalse(exists);
     }
 
-//    @Test
-//    void shouldNotDeleteById() {
-//        accountElasticsearchRepository.deleteById(getNonExistingId());
-//    }
-//
+    @Test
+    void shouldNotDeleteById() {
+        EmptyResultDataAccessException exception = Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
+            accountRepository.deleteById(getNonExistingId());
+        });
+        Assertions.assertTrue(exception.getMessage().contains("entity with id"));
+    }
+
 //    @Test
 //    void shouldDeleteItems() {
 //        long countBefore = accountElasticsearchRepository.count();
