@@ -20,6 +20,7 @@ import java.util.List;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.ok.account.TestDataUtils.getNonExistingId;
 import static org.ok.account.controller.Paths.ACCOUNT_PATH;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
@@ -86,5 +87,16 @@ class AccountControllerTest {
                 .andReturn();
         assertNotNull(mvcResult);
         accountRepository.deleteAll(saved);
+    }
+
+    @Test
+    public void shouldNotFindById() throws Exception {
+        MvcResult mvcResult = mvc.perform(get(format("/%s/{id}", ACCOUNT_PATH), getNonExistingId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isNotFound())
+                .andReturn();
+        assertNotNull(mvcResult);
     }
 }
