@@ -114,8 +114,36 @@ class AccountControllerTest {
                 .andReturn();
         assertNotNull(mvcResult);
         Integer id = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.id");
+        assertNotNull(id);
         accountRepository.deleteById(id.longValue());
     }
+
+    @Test
+    public void shouldDelete() throws Exception {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        MvcResult mvcResult = mvc.perform(delete(format("/%s", ACCOUNT_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(saved))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(mvcResult);
+        Integer id = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.id");
+        assertNotNull(id);
+    }
+
+//    @Test
+//    public void shouldNotDeleteById() throws Exception {
+//        MvcResult mvcResult = mvc.perform(delete(format("/%s/{id}", ACCOUNT_PATH), getNonExistingId())
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .accept(MediaType.APPLICATION_JSON))
+//                .andDo(log())
+//                .andExpect(status().isNotFound())
+//                .andReturn();
+//        assertNotNull(mvcResult);
+//    }
 
     @Test
     public void shouldDeleteById() throws Exception {
