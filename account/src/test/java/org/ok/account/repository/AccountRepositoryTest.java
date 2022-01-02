@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ok.account.TestDataUtils.getNonExistingId;
+import static org.ok.account.TestDataUtils.getNonExistingName;
 
 @SpringBootTest
 class AccountRepositoryTest {
@@ -82,12 +83,12 @@ class AccountRepositoryTest {
         accountRepository.delete(saved);
     }
 
-//    @Test
-//    void shouldNotFindItemBySymbol() {
-//        List<Account> foundItems = accountElasticsearchRepository.findBySymbol(getNonExistingName());
-//        assertTrue(foundItems.isEmpty());
-//    }
-//
+    @Test
+    void shouldNotFindItemBySymbol() {
+        List<Account> foundItems = accountRepository.findBySymbol(getNonExistingName());
+        assertTrue(foundItems.isEmpty());
+    }
+
 //    @Test
 //    void shouldFindItemByName() {
 //        Account item = sampleAccountProvider.getItem();

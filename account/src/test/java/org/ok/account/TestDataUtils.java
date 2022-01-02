@@ -9,4 +9,8 @@ public class TestDataUtils {
     public static @NotNull Long getNonExistingId() {
         return RandomUtils.nextLong();
     }
+
+    public static @NotNull String getNonExistingName() {
+        return "No Such Name";
+    }
 }
