@@ -71,17 +71,17 @@ class AccountRepositoryTest {
         assertTrue(foundItemOptional.isEmpty());
     }
 
-//    @Test
-//    void shouldFindItemBySymbol() {
-//        Account item = sampleAccountProvider.getItem();
-//        Account saved = accountElasticsearchRepository.save(item);
-//        List<Account> foundItems = accountElasticsearchRepository.findBySymbol(item.getSymbol());
-//        assertFalse(foundItems.isEmpty());
-//        Account foundItem = foundItems.get(0);
-//        assertEquals(item.getSymbol(), foundItem.getSymbol());
-//        accountElasticsearchRepository.delete(saved);
-//    }
-//
+    @Test
+    void shouldFindItemBySymbol() {
+        Account item = contentProvider.get();
+        Account saved = accountRepository.save(item);
+        List<Account> foundItems = accountRepository.findBySymbol(item.getSymbol());
+        assertFalse(foundItems.isEmpty());
+        Account foundItem = foundItems.get(0);
+        assertEquals(item.getSymbol(), foundItem.getSymbol());
+        accountRepository.delete(saved);
+    }
+
 //    @Test
 //    void shouldNotFindItemBySymbol() {
 //        List<Account> foundItems = accountElasticsearchRepository.findBySymbol(getNonExistingName());
