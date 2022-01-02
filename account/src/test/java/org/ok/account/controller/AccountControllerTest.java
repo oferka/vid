@@ -132,4 +132,15 @@ class AccountControllerTest {
         boolean exists = accountRepository.existsById(id);
         assertFalse(exists);
     }
+
+    @Test
+    public void shouldNotDeleteById() throws Exception {
+        MvcResult mvcResult = mvc.perform(delete(format("/%s/{id}", ACCOUNT_PATH), getNonExistingId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isNotFound())
+                .andReturn();
+        assertNotNull(mvcResult);
+    }
 }
