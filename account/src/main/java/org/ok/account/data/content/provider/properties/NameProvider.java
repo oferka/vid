@@ -1,4 +1,4 @@
-package org.ok.account.data.content.provider;
+package org.ok.account.data.content.provider.properties;
 
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Service
-public class SymbolProvider {
+public class NameProvider {
 
     public @NotNull @Size(min = 2, max = 64) @NotBlank String get() {
-        return new Faker().stock().nyseSymbol();
+        return new Faker().company().name();
     }
 }

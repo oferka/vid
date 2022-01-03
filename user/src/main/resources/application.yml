@@ -1,10 +1,10 @@
 spring:
   application:
-    name: "account"
+    name: "user"
   profiles:
     active: "csv-content-provider"
   datasource:
-    url: jdbc:h2:mem:accounts
+    url: jdbc:h2:mem:users
     username: sa
     password: password
     driverClassName: org.h2.Driver
@@ -41,7 +41,7 @@ management:
 info:
   app:
     name: account
-    description: This is the vid account application
+    description: This is the vid user application
     version: 0.0.1
 
 logging:

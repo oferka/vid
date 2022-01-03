@@ -1,6 +1,9 @@
 package org.ok.account.data.content.provider;
 
 import lombok.extern.slf4j.Slf4j;
+import org.ok.account.data.content.provider.properties.NameProvider;
+import org.ok.account.data.content.provider.properties.SectorProvider;
+import org.ok.account.data.content.provider.properties.SymbolProvider;
 import org.ok.account.model.Account;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

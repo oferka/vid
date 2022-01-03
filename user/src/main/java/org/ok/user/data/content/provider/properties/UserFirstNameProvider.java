@@ -1,4 +1,4 @@
-package org.ok.account.data.content.provider;
+package org.ok.user.data.content.provider.properties;
 
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Service
-public class NameProvider {
+public class UserFirstNameProvider {
 
     public @NotNull @Size(min = 2, max = 64) @NotBlank String get() {
-        return new Faker().company().name();
+        return new Faker().name().firstName();
     }
 }
