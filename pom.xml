@@ -36,6 +36,7 @@
     <modules>
         <module>base-entity</module>
         <module>account</module>
+        <module>user</module>
     </modules>
     <packaging>pom</packaging>
     <scm>
