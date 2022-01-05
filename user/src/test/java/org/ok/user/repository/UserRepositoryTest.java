@@ -3,6 +3,8 @@ package org.ok.user.repository;
 import org.junit.jupiter.api.Test;
 import org.ok.user.UserTest;
 import org.ok.user.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -472,33 +474,33 @@ public class UserRepositoryTest extends UserTest {
         userRepository.deleteAll(saved);
     }
 
-//    @Test
-//    void shouldFindAllItemsPaged() {
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        Page<Account> found = accountRepository.findAll(PageRequest.of(0, 4));
-//        assertNotNull(found);
-//        accountRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldFindAllItemsPagedAndSorted() {
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        Page<Account> found = accountRepository.findAll(PageRequest.of(0, 4, Sort.by(Sort.Direction.ASC, "name")));
-//        assertNotNull(found);
-//        accountRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldExistById() {
-//        Account item = contentProvider.get();
-//        Account saved = accountRepository.save(item);
-//        boolean exists = accountRepository.existsById(saved.getId());
-//        assertTrue(exists);
-//        accountRepository.delete(saved);
-//    }
-//
+    @Test
+    void shouldFindAllItemsPaged() {
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        Page<User> found = userRepository.findAll(PageRequest.of(0, 4));
+        assertNotNull(found);
+        userRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldFindAllItemsPagedAndSorted() {
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        Page<User> found = userRepository.findAll(PageRequest.of(0, 4, Sort.by(Sort.Direction.ASC, "lastName")));
+        assertNotNull(found);
+        userRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldExistById() {
+        User item = contentProvider.get();
+        User saved = userRepository.save(item);
+        boolean exists = userRepository.existsById(saved.getId());
+        assertTrue(exists);
+        userRepository.delete(saved);
+    }
+
 //    @Test
 //    void shouldNotExistById() {
 //        boolean exists = accountRepository.existsById(getNonExistingId());
