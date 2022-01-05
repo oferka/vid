@@ -3,6 +3,7 @@ package org.ok.user.repository;
 import org.junit.jupiter.api.Test;
 import org.ok.user.UserTest;
 import org.ok.user.model.User;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
@@ -444,33 +445,33 @@ public class UserRepositoryTest extends UserTest {
         userRepository.deleteAll(saved);
     }
 
-//    @Test
-//    void shouldFindAllItemsSortedById() {
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-//        assertNotNull(found);
-//        accountRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldFindAllItemsSortedByName() {
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
-//        assertNotNull(found);
-//        accountRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldFindAllItemsSortedBySector() {
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.DESC, "sector"));
-//        assertNotNull(found);
-//        accountRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    void shouldFindAllItemsSortedById() {
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        Iterable<User> found = userRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        assertNotNull(found);
+        userRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldFindAllItemsSortedByFirstName() {
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        Iterable<User> found = userRepository.findAll(Sort.by(Sort.Direction.ASC, "firstName"));
+        assertNotNull(found);
+        userRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldFindAllItemsSortedByDateOfRegistration() {
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        Iterable<User> found = userRepository.findAll(Sort.by(Sort.Direction.DESC, "dateOfRegistration"));
+        assertNotNull(found);
+        userRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    void shouldFindAllItemsPaged() {
 //        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
