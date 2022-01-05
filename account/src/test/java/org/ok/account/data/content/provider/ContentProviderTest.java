@@ -19,8 +19,8 @@ class ContentProviderTest extends AccountTest {
 
     @Test
     void shouldGetItems() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         assertNotNull(items);
-        assertEquals(numberOfItemsToLoad, items.size());
+        assertEquals(getNumberOfItemsToLoad(), items.size());
     }
 }

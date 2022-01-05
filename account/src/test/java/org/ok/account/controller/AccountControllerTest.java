@@ -36,7 +36,7 @@ class AccountControllerTest extends AccountTest {
 
     @Test
     public void shouldFindAll() throws Exception {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         MvcResult mvcResult = mvc.perform(get(format("/%s", ACCOUNT_PATH))
                         .contentType(MediaType.APPLICATION_JSON)
@@ -51,7 +51,7 @@ class AccountControllerTest extends AccountTest {
 
     @Test
     public void shouldFindById() throws Exception {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Long id = items.get(0).getId();
         MvcResult mvcResult = mvc.perform(get(format("/%s/{id}", ACCOUNT_PATH), id)
@@ -196,7 +196,7 @@ class AccountControllerTest extends AccountTest {
 
     @Test
     public void shouldCount() throws Exception {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         MvcResult mvcResult = mvc.perform(get(format("/%s/%s", ACCOUNT_PATH, COUNT_PATH))
                         .contentType(MediaType.APPLICATION_JSON)

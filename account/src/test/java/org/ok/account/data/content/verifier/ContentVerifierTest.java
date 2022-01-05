@@ -18,14 +18,14 @@ class ContentVerifierTest extends AccountTest {
 
     @Test
     void shouldFindLoaded() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> loaded = contentVerifier.findLoaded(items);
         assertEquals(IterableUtils.toList(loaded), items);
     }
 
     @Test
     void shouldFindNotLoaded() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> loaded = contentVerifier.findNotLoaded(items);
         assertTrue(IterableUtils.toList(loaded).isEmpty());
     }

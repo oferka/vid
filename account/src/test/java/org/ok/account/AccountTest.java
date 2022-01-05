@@ -3,6 +3,7 @@ package org.ok.account;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.ok.account.data.content.provider.ContentProvider;
+import org.ok.account.data.content.provider.ContentProviderConfiguration;
 import org.ok.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,9 +19,10 @@ public abstract class AccountTest {
     @Autowired
     protected ContentProvider contentProvider;
 
-    protected long contentCountBefore;
+    @Autowired
+    protected ContentProviderConfiguration contentProviderConfiguration;
 
-    protected final int numberOfItemsToLoad = 100;
+    protected long contentCountBefore;
 
     @BeforeEach
     void captureContentStatus() {
@@ -31,5 +33,9 @@ public abstract class AccountTest {
     void verifyContentStatusNotChanged() {
         long contentCountAfter = accountRepository.count();
         assertEquals(contentCountBefore, contentCountAfter);
+    }
+
+    protected int getNumberOfItemsToLoad() {
+        return contentProviderConfiguration.getNumberOfItems();
     }
 }

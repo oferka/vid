@@ -19,7 +19,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldFindAll() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> savedItems = accountRepository.saveAll(items);
         List<Account> foundItems = accountService.findAll();
         assertNotNull(foundItems);
@@ -28,7 +28,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldFindById() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Long id = items.get(0).getId();
         Optional<Account> found = accountService.findById(id);
@@ -45,7 +45,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldFindBySymbol() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         String symbol = items.get(0).getSymbol();
         List<Account> found = accountService.findBySymbol(symbol);
@@ -62,7 +62,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldFindByName() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         String name = items.get(0).getName();
         List<Account> found = accountService.findByName(name);
@@ -79,7 +79,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldFindBySector() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         String sector = items.get(0).getSector();
         List<Account> found = accountService.findBySector(sector);
@@ -96,7 +96,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldFindRandom() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Optional<Account> found = accountService.findRandom();
         assertTrue(found.isPresent());
@@ -113,7 +113,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldSaveAll() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountService.saveAll(items);
         assertNotNull(saved);
         accountRepository.deleteAll(items);
@@ -121,7 +121,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldUpdate() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Account item = items.get(0);
         Optional<Account> updated = accountService.update(item);
@@ -131,7 +131,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldNotUpdate() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Account item = new Account(getNonExistingId(), items.get(0).getSymbol(), items.get(0).getName(), items.get(0).getSector());
         Optional<Account> updated = accountService.update(item);
@@ -141,7 +141,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldDelete() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Account item = items.get(0);
         Optional<Account> deleted = accountService.delete(item);
@@ -151,7 +151,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldNotDelete() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Account item = new Account(getNonExistingId(), items.get(0).getSymbol(), items.get(0).getName(), items.get(0).getSector());
         Optional<Account> deleted = accountService.delete(item);
@@ -179,10 +179,10 @@ class AccountServiceTest extends AccountTest {
     @Test
     void shouldCount() {
         long countBefore = accountRepository.count();
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         long countAfter = accountService.count();
-        assertEquals(countBefore + numberOfItemsToLoad, countAfter);
+        assertEquals(countBefore + getNumberOfItemsToLoad(), countAfter);
         accountRepository.deleteAll(saved);
     }
 }

@@ -29,7 +29,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldSaveItems() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         assertNotNull(saved);
         accountRepository.deleteAll(saved);
@@ -105,7 +105,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldFindAllItems() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Iterable<Account> found = accountRepository.findAll();
         assertNotNull(found);
@@ -114,7 +114,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldFindAllItemsSortedById() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         assertNotNull(found);
@@ -123,7 +123,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldFindAllItemsSortedByName() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
         assertNotNull(found);
@@ -132,7 +132,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldFindAllItemsSortedBySector() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Iterable<Account> found = accountRepository.findAll(Sort.by(Sort.Direction.DESC, "sector"));
         assertNotNull(found);
@@ -141,7 +141,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldFindAllItemsPaged() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Page<Account> found = accountRepository.findAll(PageRequest.of(0, 4));
         assertNotNull(found);
@@ -150,7 +150,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldFindAllItemsPagedAndSorted() {
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         Page<Account> found = accountRepository.findAll(PageRequest.of(0, 4, Sort.by(Sort.Direction.ASC, "name")));
         assertNotNull(found);
@@ -175,10 +175,10 @@ class AccountRepositoryTest extends AccountTest {
     @Test
     void shouldCount() {
         long countBefore = accountRepository.count();
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         long countAfter = accountRepository.count();
-        assertEquals(countAfter, countBefore + numberOfItemsToLoad);
+        assertEquals(countAfter, countBefore + getNumberOfItemsToLoad());
         accountRepository.deleteAll(saved);
     }
 
@@ -209,12 +209,12 @@ class AccountRepositoryTest extends AccountTest {
     @Test
     void shouldDeleteItems() {
         long countBefore = accountRepository.count();
-        List<Account> items = contentProvider.get(numberOfItemsToLoad);
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
         int numberOfItemsToDelete = 3;
         accountRepository.deleteAll(items.subList(0, numberOfItemsToDelete));
         long countAfter = accountRepository.count();
-        assertEquals((countBefore + numberOfItemsToLoad - numberOfItemsToDelete), countAfter);
+        assertEquals((countBefore + getNumberOfItemsToLoad() - numberOfItemsToDelete), countAfter);
         accountRepository.deleteAll(saved);
     }
 }
