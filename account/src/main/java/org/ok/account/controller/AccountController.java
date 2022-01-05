@@ -20,7 +20,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import static org.ok.account.controller.Paths.*;
+import static org.ok.controller.Paths.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
