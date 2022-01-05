@@ -1,13 +1,16 @@
 package org.ok.user.repository;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.ok.user.UserTest;
 import org.ok.user.model.User;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -501,46 +504,46 @@ public class UserRepositoryTest extends UserTest {
         userRepository.delete(saved);
     }
 
-//    @Test
-//    void shouldNotExistById() {
-//        boolean exists = accountRepository.existsById(getNonExistingId());
-//        assertFalse(exists);
-//    }
-//
-//    @Test
-//    void shouldCount() {
-//        long countBefore = accountRepository.count();
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        long countAfter = accountRepository.count();
-//        assertEquals(countAfter, countBefore + getNumberOfItemsToLoad());
-//        accountRepository.deleteAll(saved);
-//    }
-//
-//    @Test
-//    void shouldDeleteItem() {
-//        Account item = contentProvider.get();
-//        Account saved = accountRepository.save(item);
-//        accountRepository.delete(item);
-//        boolean exists = accountRepository.existsById(saved.getId());
-//        assertFalse(exists);
-//    }
-//
-//    @Test
-//    void shouldDeleteById() {
-//        Account item = contentProvider.get();
-//        Account saved = accountRepository.save(item);
-//        accountRepository.deleteById(item.getId());
-//        boolean exists = accountRepository.existsById(saved.getId());
-//        assertFalse(exists);
-//    }
-//
-//    @Test
-//    void shouldNotDeleteById() {
-//        EmptyResultDataAccessException exception = Assertions.assertThrows(EmptyResultDataAccessException.class, () -> accountRepository.deleteById(getNonExistingId()));
-//        Assertions.assertTrue(Objects.requireNonNull(exception.getMessage()).contains("entity with id"));
-//    }
-//
+    @Test
+    void shouldNotExistById() {
+        boolean exists = userRepository.existsById(getNonExistingId());
+        assertFalse(exists);
+    }
+
+    @Test
+    void shouldCount() {
+        long countBefore = userRepository.count();
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        long countAfter = userRepository.count();
+        assertEquals(countAfter, countBefore + getNumberOfItemsToLoad());
+        userRepository.deleteAll(saved);
+    }
+
+    @Test
+    void shouldDeleteItem() {
+        User item = contentProvider.get();
+        User saved = userRepository.save(item);
+        userRepository.delete(item);
+        boolean exists = userRepository.existsById(saved.getId());
+        assertFalse(exists);
+    }
+
+    @Test
+    void shouldDeleteById() {
+        User item = contentProvider.get();
+        User saved = userRepository.save(item);
+        userRepository.deleteById(item.getId());
+        boolean exists = userRepository.existsById(saved.getId());
+        assertFalse(exists);
+    }
+
+    @Test
+    void shouldNotDeleteById() {
+        EmptyResultDataAccessException exception = Assertions.assertThrows(EmptyResultDataAccessException.class, () -> userRepository.deleteById(getNonExistingId()));
+        Assertions.assertTrue(Objects.requireNonNull(exception.getMessage()).contains("entity with id"));
+    }
+
 //    @Test
 //    void shouldDeleteItems() {
 //        long countBefore = accountRepository.count();
