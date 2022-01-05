@@ -18,7 +18,7 @@ import java.util.Optional;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.ok.account.TestDataUtils.getNonExistingId;
+import static org.ok.TestDataUtils.getNonExistingId;
 import static org.ok.controller.Paths.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;

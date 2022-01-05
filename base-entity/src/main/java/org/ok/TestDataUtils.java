@@ -1,4 +1,4 @@
-package org.ok.account;
+package org.ok;
 
 import org.apache.commons.lang3.RandomUtils;
 
