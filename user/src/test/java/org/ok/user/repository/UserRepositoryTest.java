@@ -544,15 +544,15 @@ public class UserRepositoryTest extends UserTest {
         Assertions.assertTrue(Objects.requireNonNull(exception.getMessage()).contains("entity with id"));
     }
 
-//    @Test
-//    void shouldDeleteItems() {
-//        long countBefore = accountRepository.count();
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        int numberOfItemsToDelete = 3;
-//        accountRepository.deleteAll(items.subList(0, numberOfItemsToDelete));
-//        long countAfter = accountRepository.count();
-//        assertEquals((countBefore + getNumberOfItemsToLoad() - numberOfItemsToDelete), countAfter);
-//        accountRepository.deleteAll(saved);
-//    }
+    @Test
+    void shouldDeleteItems() {
+        long countBefore = userRepository.count();
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        int numberOfItemsToDelete = 3;
+        userRepository.deleteAll(items.subList(0, numberOfItemsToDelete));
+        long countAfter = userRepository.count();
+        assertEquals((countBefore + getNumberOfItemsToLoad() - numberOfItemsToDelete), countAfter);
+        userRepository.deleteAll(saved);
+    }
 }
