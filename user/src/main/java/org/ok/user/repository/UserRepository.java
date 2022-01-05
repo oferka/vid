@@ -55,4 +55,29 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByThumbnailPicture(String thumbnailPicture);
 
     List<User> findByNationality(String nationality);
+
+    Boolean existsByGenderAndTitleAndFirstNameAndLastNameAndStreetNumberAndStreetNameAndCityAndStateAndCountryAndPostcodeAndLatitudeAndLongitudeAndTimezoneOffsetAndTimezoneDescriptionAndEmailAndDateOfBirthAndDateOfRegistrationAndPhoneAndCellAndLargePictureAndMediumPictureAndThumbnailPictureAndNationality(
+            String gender,
+            String title,
+            String firstName,
+            String lastName,
+            int streetNumber,
+            String streetName,
+            String city,
+            String state,
+            String country,
+            String postcode,
+            double latitude,
+            double longitude,
+            String timezoneOffset,
+            String timezoneDescription,
+            String email,
+            ZonedDateTime dateOfBirth,
+            ZonedDateTime dateOfRegistration,
+            String phone,
+            String cell,
+            String largePicture,
+            String mediumPicture,
+            String thumbnailPicture,
+            String nationality);
 }

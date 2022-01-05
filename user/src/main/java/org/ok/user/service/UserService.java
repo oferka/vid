@@ -168,7 +168,30 @@ public class UserService {
     }
 
     public boolean exists(@NotNull User user) {
-        Long id = user.getId();
-        return ((id != null) && existsById(id));
+        return userRepository.existsByGenderAndTitleAndFirstNameAndLastNameAndStreetNumberAndStreetNameAndCityAndStateAndCountryAndPostcodeAndLatitudeAndLongitudeAndTimezoneOffsetAndTimezoneDescriptionAndEmailAndDateOfBirthAndDateOfRegistrationAndPhoneAndCellAndLargePictureAndMediumPictureAndThumbnailPictureAndNationality(
+                user.getGender(),
+                user.getTitle(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getStreetNumber(),
+                user.getStreetName(),
+                user.getCity(),
+                user.getState(),
+                user.getCountry(),
+                user.getPostcode(),
+                user.getLatitude(),
+                user.getLongitude(),
+                user.getTimezoneOffset(),
+                user.getTimezoneDescription(),
+                user.getEmail(),
+                user.getDateOfBirth(),
+                user.getDateOfRegistration(),
+                user.getPhone(),
+                user.getCell(),
+                user.getLargePicture(),
+                user.getMediumPicture(),
+                user.getThumbnailPicture(),
+                user.getNationality()
+        );
     }
 }
