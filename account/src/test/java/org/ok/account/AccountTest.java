@@ -20,7 +20,7 @@ public abstract class AccountTest {
 
     protected long contentCountBefore;
 
-    protected final int numberOfItemsToLoad = 18;
+    protected final int numberOfItemsToLoad = 100;
 
     @BeforeEach
     void captureContentStatus() {

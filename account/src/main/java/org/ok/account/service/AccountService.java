@@ -87,7 +87,8 @@ public class AccountService {
     }
 
     public boolean exists(@NotNull Account account) {
-        Long id = account.getId();
-        return ((id != null) && existsById(id));
+//        Long id = account.getId();
+//        return ((id != null) && existsById(id));
+        return accountRepository.existsBySymbolAndNameAndSector(account.getSymbol(), account.getName(), account.getSector());
     }
 }
