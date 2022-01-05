@@ -435,15 +435,15 @@ public class UserRepositoryTest extends UserTest {
         List<User> foundItems = userRepository.findByNationality(getNonExistingName());
         assertTrue(foundItems.isEmpty());
     }
-//    @Test
-//    void shouldFindAllItems() {
-//        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
-//        Iterable<Account> saved = accountRepository.saveAll(items);
-//        Iterable<Account> found = accountRepository.findAll();
-//        assertNotNull(found);
-//        accountRepository.deleteAll(saved);
-//    }
-//
+    @Test
+    void shouldFindAllItems() {
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        Iterable<User> found = userRepository.findAll();
+        assertNotNull(found);
+        userRepository.deleteAll(saved);
+    }
+
 //    @Test
 //    void shouldFindAllItemsSortedById() {
 //        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
