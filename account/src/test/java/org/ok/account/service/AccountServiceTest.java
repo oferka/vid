@@ -5,6 +5,7 @@ import org.ok.account.AccountTest;
 import org.ok.account.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
@@ -133,7 +134,7 @@ class AccountServiceTest extends AccountTest {
     public void shouldNotUpdate() {
         List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
-        Account item = new Account(getNonExistingId(), items.get(0).getSymbol(), items.get(0).getName(), items.get(0).getSector());
+        Account item = createAccountWithNonExistingId(items.get(0));
         Optional<Account> updated = accountService.update(item);
         assertTrue(updated.isEmpty());
         accountRepository.deleteAll(saved);
@@ -153,7 +154,7 @@ class AccountServiceTest extends AccountTest {
     public void shouldNotDelete() {
         List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
         Iterable<Account> saved = accountRepository.saveAll(items);
-        Account item = new Account(getNonExistingId(), items.get(0).getSymbol(), items.get(0).getName(), items.get(0).getSector());
+        Account item = createAccountWithNonExistingId(items.get(0));
         Optional<Account> deleted = accountService.delete(item);
         assertTrue(deleted.isEmpty());
         accountRepository.deleteAll(saved);
@@ -184,5 +185,14 @@ class AccountServiceTest extends AccountTest {
         long countAfter = accountService.count();
         assertEquals(countBefore + getNumberOfItemsToLoad(), countAfter);
         accountRepository.deleteAll(saved);
+    }
+
+    private @NotNull Account createAccountWithNonExistingId(@NotNull Account account) {
+        return new Account(
+                getNonExistingId(),
+                account.getSymbol(),
+                account.getName(),
+                account.getSector()
+        );
     }
 }
