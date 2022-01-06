@@ -5,7 +5,6 @@ import org.ok.user.UserTest;
 import org.ok.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -523,34 +522,5 @@ public class UserServiceTest extends UserTest {
         long countAfter = userService.count();
         assertEquals(countBefore + getNumberOfItemsToLoad(), countAfter);
         userRepository.deleteAll(saved);
-    }
-
-    private @NotNull User createUserWithNonExistingId(@NotNull User user) {
-        return new User(
-                getNonExistingId(),
-                user.getGender(),
-                user.getTitle(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getStreetNumber(),
-                user.getStreetName(),
-                user.getCity(),
-                user.getState(),
-                user.getCountry(),
-                user.getPostcode(),
-                user.getLatitude(),
-                user.getLongitude(),
-                user.getTimezoneOffset(),
-                user.getTimezoneDescription(),
-                user.getEmail(),
-                user.getDateOfBirth(),
-                user.getDateOfRegistration(),
-                user.getPhone(),
-                user.getCell(),
-                user.getLargePicture(),
-                user.getMediumPicture(),
-                user.getThumbnailPicture(),
-                user.getNationality()
-        );
     }
 }

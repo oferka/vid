@@ -5,7 +5,6 @@ import org.ok.account.AccountTest;
 import org.ok.account.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
@@ -185,14 +184,5 @@ class AccountServiceTest extends AccountTest {
         long countAfter = accountService.count();
         assertEquals(countBefore + getNumberOfItemsToLoad(), countAfter);
         accountRepository.deleteAll(saved);
-    }
-
-    private @NotNull Account createAccountWithNonExistingId(@NotNull Account account) {
-        return new Account(
-                getNonExistingId(),
-                account.getSymbol(),
-                account.getName(),
-                account.getSector()
-        );
     }
 }
