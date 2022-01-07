@@ -2,27 +2,18 @@ package org.ok.user.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
+import org.ok.model.BaseEntity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    private Long id;
+@NoArgsConstructor
+public class User extends BaseEntity {
 
     @Getter
     @NotNull
@@ -152,7 +143,8 @@ public class User {
     @NotBlank
     private String nationality;
 
-    public User(String gender,
+    public User(Long id,
+                String gender,
                 String title,
                 String firstName,
                 String lastName,
@@ -175,6 +167,7 @@ public class User {
                 String mediumPicture,
                 String thumbnailPicture,
                 String nationality) {
+        super(id);
         this.gender = gender;
         this.title = title;
         this.firstName = firstName;
@@ -198,5 +191,31 @@ public class User {
         this.mediumPicture = mediumPicture;
         this.thumbnailPicture = thumbnailPicture;
         this.nationality = nationality;
+    }
+
+    public User(String gender,
+                String title,
+                String firstName,
+                String lastName,
+                int streetNumber,
+                String streetName,
+                String city,
+                String state,
+                String country,
+                String postcode,
+                double latitude,
+                double longitude,
+                String timezoneOffset,
+                String timezoneDescription,
+                String email,
+                ZonedDateTime dateOfBirth,
+                ZonedDateTime dateOfRegistration,
+                String phone,
+                String cell,
+                String largePicture,
+                String mediumPicture,
+                String thumbnailPicture,
+                String nationality) {
+        this(null, gender, title, firstName, lastName, streetNumber, streetName, city, state, country, postcode, latitude, longitude, timezoneOffset, timezoneDescription, email, dateOfBirth, dateOfRegistration, phone, cell, largePicture, mediumPicture, thumbnailPicture, nationality);
     }
 }

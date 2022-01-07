@@ -1,26 +1,17 @@
 package org.ok.account.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.ok.model.BaseEntity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-public class Account {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    private Long id;
+@NoArgsConstructor
+public class Account extends BaseEntity {
 
     @NotNull
     @Size(min = 1, max = 64)
@@ -40,9 +31,14 @@ public class Account {
     @Getter
     private String sector;
 
-    public Account(String symbol, String name, String sector) {
+    public Account(Long id, String symbol, String name, String sector) {
+        super(id);
         this.symbol = symbol;
         this.name = name;
         this.sector = sector;
+    }
+
+    public Account(String symbol, String name, String sector) {
+        this(null, symbol,name, sector);
     }
 }

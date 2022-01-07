@@ -37,6 +37,7 @@
         <module>base-entity</module>
         <module>account</module>
         <module>user</module>
+        <module>service-registry</module>
     </modules>
     <packaging>pom</packaging>
     <scm>
