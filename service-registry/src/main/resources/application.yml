@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: "service-registry"
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+info:
+  app:
+    name: service-registry
+    description: This is the vid service registry
+    version: 0.0.1
+
+logging:
+  level:
+    root: INFO
+    org.ok.vid: INFO
