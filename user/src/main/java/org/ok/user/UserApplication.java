@@ -4,9 +4,11 @@ import org.ok.user.data.content.loader.ContentLoader;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class UserApplication {
 
     public static void main(String[] args) {
@@ -17,5 +19,4 @@ public class UserApplication {
     public CommandLineRunner ensureContentLoaded(ContentLoader contentLoader) {
         return args -> contentLoader.ensureContentLoaded();
     }
-
 }
