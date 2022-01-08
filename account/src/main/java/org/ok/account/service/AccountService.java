@@ -52,6 +52,15 @@ public class AccountService {
         return Optional.of(item);
     }
 
+    public Optional<Long> findRandomId() {
+        List<Account> items = findAll();
+        if(items.isEmpty()) {
+            return Optional.empty();
+        }
+        Account item = items.get(RandomUtils.nextInt(0, items.size()));
+        return Optional.of(item.getId());
+    }
+
     public @NotNull Account save(@NotNull Account account) {
         return accountRepository.save(account);
     }

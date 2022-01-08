@@ -2,7 +2,7 @@ spring:
   application:
     name: "USER"
   profiles:
-    active: "csv-content-provider,local-account-id-provider"
+    active: "csv-content-provider,random-account-id-provider"
   datasource:
     url: jdbc:h2:mem:users
     username: sa

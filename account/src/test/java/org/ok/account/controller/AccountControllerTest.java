@@ -90,6 +90,17 @@ class AccountControllerTest extends AccountTest {
     }
 
     @Test
+    public void shouldFindRandomId() throws Exception {
+        MvcResult mvcResult = mvc.perform(get(format("/%s/%s", ACCOUNT_PATH, RANDOM_ID_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(mvcResult);
+    }
+
+    @Test
     public void shouldSave() throws Exception {
         Account item = contentProvider.get();
         MvcResult mvcResult = mvc.perform(post(format("/%s", ACCOUNT_PATH))

@@ -66,6 +66,17 @@ public class AccountController {
         return item.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Find a random account ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Random account ID successfully found", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))}),
+            @ApiResponse(responseCode = "404", description = "Random account ID was not found", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Failed to find a random account ID", content = @Content) })
+    @GetMapping(path = RANDOM_ID_PATH)
+    public @NotNull ResponseEntity<Long> findRandomId() {
+        Optional<Long> item = accountService.findRandomId();
+        return item.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @Operation(summary = "Create an account")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Account created successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Account.class))}),

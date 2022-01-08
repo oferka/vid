@@ -104,6 +104,15 @@ class AccountServiceTest extends AccountTest {
     }
 
     @Test
+    public void shouldFindRandomId() {
+        List<Account> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<Account> saved = accountRepository.saveAll(items);
+        Optional<Long> found = accountService.findRandomId();
+        assertTrue(found.isPresent());
+        accountRepository.deleteAll(saved);
+    }
+
+    @Test
     public void shouldSave() {
         Account item = contentProvider.get();
         Account saved = accountService.save(item);
