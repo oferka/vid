@@ -61,8 +61,8 @@ logging:
     org.springframework.web: INFO
     org.apache.http: INFO
     org.ok.vid: INFO
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
 
 springdoc:
   show-actuator: true
