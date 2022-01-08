@@ -38,6 +38,7 @@ public class RandomContentProvider implements ContentProvider {
     private final UserMediumPictureProvider userMediumPictureProvider;
     private final UserThumbnailPictureProvider userThumbnailPictureProvider;
     private final UserNationalityProvider userNationalityProvider;
+    private final AccountIdProvider accountIdProvider;
 
     public RandomContentProvider(
             UserGenderProvider userGenderProvider,
@@ -62,7 +63,8 @@ public class RandomContentProvider implements ContentProvider {
             UserLargePictureProvider userLargePictureProvider,
             UserMediumPictureProvider userMediumPictureProvider,
             UserThumbnailPictureProvider userThumbnailPictureProvider,
-            UserNationalityProvider userNationalityProvider) {
+            UserNationalityProvider userNationalityProvider,
+            AccountIdProvider accountIdProvider) {
         this.userGenderProvider = userGenderProvider;
         this.userTitleProvider = userTitleProvider;
         this.userFirstNameProvider = userFirstNameProvider;
@@ -86,6 +88,7 @@ public class RandomContentProvider implements ContentProvider {
         this.userMediumPictureProvider = userMediumPictureProvider;
         this.userThumbnailPictureProvider = userThumbnailPictureProvider;
         this.userNationalityProvider = userNationalityProvider;
+        this.accountIdProvider = accountIdProvider;
     }
 
     @Override
@@ -127,7 +130,8 @@ public class RandomContentProvider implements ContentProvider {
                 userLargePictureProvider.get(),
                 userMediumPictureProvider.get(),
                 userThumbnailPictureProvider.get(),
-                userNationalityProvider.get()
+                userNationalityProvider.get(),
+                accountIdProvider.get()
         );
     }
 }

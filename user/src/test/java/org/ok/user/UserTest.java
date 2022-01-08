@@ -68,7 +68,8 @@ public abstract class UserTest {
                 user.getLargePicture(),
                 user.getMediumPicture(),
                 user.getThumbnailPicture(),
-                user.getNationality()
+                user.getNationality(),
+                user.getAccountId()
         );
     }
 }

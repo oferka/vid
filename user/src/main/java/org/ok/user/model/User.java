@@ -143,6 +143,9 @@ public class User extends BaseEntity {
     @NotBlank
     private String nationality;
 
+    @Getter
+    private Long accountId;
+
     public User(Long id,
                 String gender,
                 String title,
@@ -166,7 +169,8 @@ public class User extends BaseEntity {
                 String largePicture,
                 String mediumPicture,
                 String thumbnailPicture,
-                String nationality) {
+                String nationality,
+                Long accountId) {
         super(id);
         this.gender = gender;
         this.title = title;
@@ -191,6 +195,7 @@ public class User extends BaseEntity {
         this.mediumPicture = mediumPicture;
         this.thumbnailPicture = thumbnailPicture;
         this.nationality = nationality;
+        this.accountId = accountId;
     }
 
     public User(String gender,
@@ -215,7 +220,8 @@ public class User extends BaseEntity {
                 String largePicture,
                 String mediumPicture,
                 String thumbnailPicture,
-                String nationality) {
-        this(null, gender, title, firstName, lastName, streetNumber, streetName, city, state, country, postcode, latitude, longitude, timezoneOffset, timezoneDescription, email, dateOfBirth, dateOfRegistration, phone, cell, largePicture, mediumPicture, thumbnailPicture, nationality);
+                String nationality,
+                Long accountId) {
+        this(null, gender, title, firstName, lastName, streetNumber, streetName, city, state, country, postcode, latitude, longitude, timezoneOffset, timezoneDescription, email, dateOfBirth, dateOfRegistration, phone, cell, largePicture, mediumPicture, thumbnailPicture, nationality, accountId);
     }
 }

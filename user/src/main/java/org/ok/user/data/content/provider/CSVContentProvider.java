@@ -1,6 +1,7 @@
 package org.ok.user.data.content.provider;
 
 import lombok.extern.slf4j.Slf4j;
+import org.ok.user.data.content.provider.properties.AccountIdProvider;
 import org.ok.user.model.User;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,11 @@ import java.util.List;
 public class CSVContentProvider implements ContentProvider {
 
     private final CsvReader csvReader;
+    private final AccountIdProvider accountIdProvider;
 
-    public CSVContentProvider(CsvReader csvReader) {
+    public CSVContentProvider(CsvReader csvReader, AccountIdProvider accountIdProvider) {
         this.csvReader = csvReader;
+        this.accountIdProvider = accountIdProvider;
     }
 
     @Override
@@ -61,7 +64,8 @@ public class CSVContentProvider implements ContentProvider {
                 line.getLargePicture(),
                 line.getMediumPicture(),
                 line.getThumbnailPicture(),
-                line.getNationality()
+                line.getNationality(),
+                accountIdProvider.get()
         );
     }
 }
