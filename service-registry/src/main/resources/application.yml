@@ -12,7 +12,7 @@ eureka:
 
 info:
   app:
-    name: service-registry
+    name: ${spring.application.name}
     description: This is the vid service registry
     version: 0.0.1
 
