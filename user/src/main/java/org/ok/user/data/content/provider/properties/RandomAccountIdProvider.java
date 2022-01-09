@@ -1,6 +1,9 @@
 package org.ok.user.data.content.provider.properties;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.constraints.NotNull;
+import java.net.URI;
+import java.util.List;
 
 import static java.lang.String.format;
 
@@ -18,13 +23,23 @@ public class RandomAccountIdProvider implements AccountIdProvider {
 
     private final RestTemplate restTemplate;
 
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
     public RandomAccountIdProvider(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @Override
     public @NotNull Long get() {
-        ResponseEntity<Long> response = restTemplate.getForEntity("http://localhost:61642/api/rest/account/random", Long.class);
+        List<ServiceInstance> instances = discoveryClient.getInstances("ACCOUNT");
+        ServiceInstance instance = instances.get(0);
+        URI uri = instance.getUri();
+        log.info(uri.toString());
+
+//        ResponseEntity<Long> response = restTemplate.getForEntity("http://localhost:62029/api/rest/account/random/id", Long.class); -Dcom.sun.management.jmxremote.local.only=false
+//        ResponseEntity<Long> response = restTemplate.getForEntity("http://ACCOUNT/api/rest/account/random/id", Long.class);
+        ResponseEntity<Long> response = restTemplate.getForEntity(uri + "/api/rest/account/random/id", Long.class);
         HttpStatus httpStatus = response.getStatusCode();
         if(httpStatus == HttpStatus.OK) {
             Long accountId = response.getBody();
