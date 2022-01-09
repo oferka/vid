@@ -1,6 +1,6 @@
 spring:
   application:
-    name: "USER"
+    name: "user"
   profiles:
     active: "csv-content-provider,local-account-id-provider"
   datasource:
@@ -50,7 +50,7 @@ management:
 
 info:
   app:
-    name: USER
+    name: ${spring.application.name}
     description: This is the vid user application
     version: 0.0.1
 
