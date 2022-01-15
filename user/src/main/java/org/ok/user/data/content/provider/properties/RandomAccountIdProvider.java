@@ -35,10 +35,11 @@ public class RandomAccountIdProvider implements AccountIdProvider {
 //        List<ServiceInstance> instances = discoveryClient.getInstances("ACCOUNT");
 //        ServiceInstance instance = instances.get(0);
 //        URI uri = instance.getUri();
-
-//        ResponseEntity<Long> response = restTemplate.getForEntity("http://localhost:62029/api/rest/account/random/id", Long.class); -Dcom.sun.management.jmxremote.local.only=false
-        ResponseEntity<Long> response = restTemplate.getForEntity("http://account/api/rest/account/random/id", Long.class);
 //        ResponseEntity<Long> response = restTemplate.getForEntity(uri + "/api/rest/account/random/id", Long.class);
+
+//        ResponseEntity<Long> response = restTemplate.getForEntity("http://localhost:62029/api/rest/account/random/id", Long.class);
+        ResponseEntity<Long> response = restTemplate.getForEntity("http://account/api/rest/account/random/id", Long.class);
+
         HttpStatus httpStatus = response.getStatusCode();
         if(httpStatus == HttpStatus.OK) {
             Long accountId = response.getBody();
