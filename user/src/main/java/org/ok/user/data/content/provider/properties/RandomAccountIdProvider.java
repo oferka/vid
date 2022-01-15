@@ -32,7 +32,7 @@ public class RandomAccountIdProvider implements AccountIdProvider {
 
     @Override
     public @NotNull Long get() {
-//        List<ServiceInstance> instances = discoveryClient.getInstances("ACCOUNT");
+//        List<ServiceInstance> instances = discoveryClient.getInstances("account");
 //        ServiceInstance instance = instances.get(0);
 //        URI uri = instance.getUri();
 //        ResponseEntity<Long> response = restTemplate.getForEntity(uri + "/api/rest/account/random/id", Long.class);
