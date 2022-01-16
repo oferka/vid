@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import javax.validation.constraints.NotNull;
 
 import static java.lang.String.format;
+import static org.ok.controller.Paths.*;
+import static org.ok.controller.ServiceNames.ACCOUNT;
 
 @Service
 @Slf4j
@@ -24,7 +26,7 @@ public class RandomAccountIdProvider implements AccountIdProvider {
 
     @Override
     public @NotNull Long get() {
-        ResponseEntity<Long> response = restTemplate.getForEntity("http://account/api/rest/account/random/id", Long.class);
+        ResponseEntity<Long> response = restTemplate.getForEntity("http://" + ACCOUNT + "/" + ACCOUNT_PATH + RANDOM_ID_PATH, Long.class);
         HttpStatus httpStatus = response.getStatusCode();
         if(httpStatus == HttpStatus.OK) {
             Long accountId = response.getBody();
