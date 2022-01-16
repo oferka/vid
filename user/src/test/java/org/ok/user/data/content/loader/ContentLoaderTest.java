@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.ok.user.UserTest;
 import org.ok.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+@ActiveProfiles({ "csv-content-provider", "local-account-id-provider" })
 public class ContentLoaderTest  extends UserTest {
 
     @Autowired

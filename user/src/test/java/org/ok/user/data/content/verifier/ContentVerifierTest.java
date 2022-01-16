@@ -5,12 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.ok.user.UserTest;
 import org.ok.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@ActiveProfiles({ "csv-content-provider", "local-account-id-provider" })
 public class ContentVerifierTest extends UserTest {
 
     @Autowired

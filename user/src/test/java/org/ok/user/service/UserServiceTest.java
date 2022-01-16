@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.ok.user.UserTest;
 import org.ok.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ok.TestDataUtils.*;
 
+@ActiveProfiles({ "csv-content-provider", "local-account-id-provider" })
 public class UserServiceTest extends UserTest {
 
     @Autowired
