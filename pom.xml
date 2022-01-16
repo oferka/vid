@@ -39,6 +39,8 @@
         <module>account</module>
         <module>user</module>
         <module>service-registry</module>
+        <module>account-model</module>
+        <module>base-model</module>
     </modules>
     <packaging>pom</packaging>
     <scm>
