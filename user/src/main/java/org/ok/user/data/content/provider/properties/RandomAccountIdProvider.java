@@ -16,7 +16,7 @@ import static org.ok.controller.ServiceAddresses.ACCOUNT_SERVICE_ADDRESS;
 
 @Service
 @Slf4j
-@Profile({"random-account-id-provider", "default"})
+@Profile({"random-rest-template-account-id-provider", "default"})
 public class RandomAccountIdProvider implements AccountIdProvider {
 
     private final RestTemplate restTemplate;
