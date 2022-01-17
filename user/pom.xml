@@ -18,6 +18,11 @@
             <artifactId>base-entity</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.ok</groupId>
+            <artifactId>user-model</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

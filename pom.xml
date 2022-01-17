@@ -25,6 +25,8 @@
         <springdoc-openapi-data-rest.version>1.6.3</springdoc-openapi-data-rest.version>
         <javafaker.version>1.0.2</javafaker.version>
         <commons-collections4.version>4.4</commons-collections4.version>
+        <jackson-databind.version>2.13.1</jackson-databind.version>
+        <jackson-datatype-jsr310.version>2.13.1</jackson-datatype-jsr310.version>
         <opencsv.version>5.5.2</opencsv.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
     </properties>
@@ -41,6 +43,7 @@
         <module>service-registry</module>
         <module>account-model</module>
         <module>base-model</module>
+        <module>user-model</module>
     </modules>
     <packaging>pom</packaging>
     <scm>
