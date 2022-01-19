@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.ok.integration.Paths.RANDOM_ID_PATH;
 
-@FeignClient(value = "accountClient", url = "http://localhost:52204/api/rest/account")
+@FeignClient(value = "accountClient", url = "http://localhost:54508/api/rest/account")
 public interface AccountClient {
 
     @GetMapping
