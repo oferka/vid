@@ -1,4 +1,4 @@
-package org.ok.controller;
+package org.ok.integration;
 
 public interface ServiceNames {
 

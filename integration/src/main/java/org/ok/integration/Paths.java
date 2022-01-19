@@ -1,7 +1,7 @@
-package org.ok.controller;
+package org.ok.integration;
 
-import static org.ok.controller.ServiceNames.ACCOUNT_SERVICE_NAME;
-import static org.ok.controller.ServiceNames.USER_SERVICE_NAME;
+import static org.ok.integration.ServiceNames.ACCOUNT_SERVICE_NAME;
+import static org.ok.integration.ServiceNames.USER_SERVICE_NAME;
 
 public interface Paths {
 
