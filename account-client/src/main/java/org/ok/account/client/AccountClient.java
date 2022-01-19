@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@FeignClient(value = "accountClient", url = "http://localhost:65198/api/rest/account")
+@FeignClient(value = "accountClient", url = "http://localhost:52204/api/rest/account")
 public interface AccountClient {
 
     @GetMapping
