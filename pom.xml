@@ -46,6 +46,7 @@
         <module>user-model</module>
         <module>account-client</module>
         <module>integration</module>
+        <module>user-client</module>
     </modules>
     <packaging>pom</packaging>
     <scm>
