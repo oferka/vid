@@ -3,10 +3,7 @@ package org.ok.account.client;
 import org.ok.account.model.Account;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -31,4 +28,16 @@ public interface AccountClient {
 
     @PostMapping
     @NotNull ResponseEntity<Account> save(@RequestBody @NotNull Account account);
+
+    @DeleteMapping()
+    @NotNull ResponseEntity<Account> delete(@RequestBody @NotNull Account account);
+
+    @DeleteMapping(path = "{id}")
+    @NotNull ResponseEntity<Account> deleteById(@PathVariable("id") @NotNull Long id);
+
+    @PutMapping
+    @NotNull ResponseEntity<Account> update(@RequestBody @NotNull Account account);
+
+    @GetMapping(path = COUNT_PATH)
+    @NotNull ResponseEntity<Long> count();
 }
