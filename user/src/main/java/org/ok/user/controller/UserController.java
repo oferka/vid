@@ -66,6 +66,17 @@ public class UserController {
         return item.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Find a random user ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Random user ID successfully found", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))}),
+            @ApiResponse(responseCode = "404", description = "Random user ID was not found", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Failed to find a random user ID", content = @Content) })
+    @GetMapping(path = RANDOM_ID_PATH)
+    public @NotNull ResponseEntity<Long> findRandomId() {
+        Optional<Long> item = userService.findRandomId();
+        return item.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @Operation(summary = "Create a user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "User created successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),

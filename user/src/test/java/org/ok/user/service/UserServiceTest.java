@@ -444,6 +444,15 @@ public class UserServiceTest extends UserTest {
     }
 
     @Test
+    public void shouldFindRandomId() {
+        List<User> items = contentProvider.get(getNumberOfItemsToLoad());
+        Iterable<User> saved = userRepository.saveAll(items);
+        Optional<Long> found = userService.findRandomId();
+        assertTrue(found.isPresent());
+        userRepository.deleteAll(saved);
+    }
+
+    @Test
     public void shouldSave() {
         User item = contentProvider.get();
         User saved = userService.save(item);

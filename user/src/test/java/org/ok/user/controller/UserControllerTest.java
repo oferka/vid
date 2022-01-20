@@ -92,6 +92,17 @@ public class UserControllerTest extends UserTest {
     }
 
     @Test
+    public void shouldFindRandomId() throws Exception {
+        MvcResult mvcResult = mvc.perform(get(format("/%s/%s", USER_PATH, RANDOM_ID_PATH))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(log())
+                .andExpect(status().isOk())
+                .andReturn();
+        assertNotNull(mvcResult);
+    }
+
+    @Test
     public void shouldSave() throws Exception {
         User item = contentProvider.get();
         MvcResult mvcResult = mvc.perform(post(format("/%s", USER_PATH))

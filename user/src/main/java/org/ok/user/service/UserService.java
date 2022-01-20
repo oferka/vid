@@ -133,6 +133,15 @@ public class UserService {
         return Optional.of(item);
     }
 
+    public Optional<Long> findRandomId() {
+        List<User> items = findAll();
+        if(items.isEmpty()) {
+            return Optional.empty();
+        }
+        User item = items.get(RandomUtils.nextInt(0, items.size()));
+        return Optional.of(item.getId());
+    }
+
     public @NotNull User save(@NotNull User user) {
         return userRepository.save(user);
     }
