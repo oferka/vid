@@ -1,5 +1,6 @@
 package org.ok.vid.user.data.content.loader;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.IterableUtils;
 import org.ok.vid.user.data.content.provider.ContentProvider;
@@ -14,22 +15,13 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ContentLoader {
 
     private final ContentProvider contentProvider;
     private final ContentVerifier contentVerifier;
     private final UserService userService;
     private final ContentProviderConfiguration contentProviderConfiguration;
-
-    public ContentLoader(ContentProvider contentProvider,
-                         ContentVerifier contentVerifier,
-                         UserService userService,
-                         ContentProviderConfiguration contentProviderConfiguration) {
-        this.contentProvider = contentProvider;
-        this.contentVerifier = contentVerifier;
-        this.userService = userService;
-        this.contentProviderConfiguration = contentProviderConfiguration;
-    }
 
     public @NotNull Iterable<User> ensureContentLoaded() {
         List<User> content = contentProvider.get(contentProviderConfiguration.getNumberOfItems());

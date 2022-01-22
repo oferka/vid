@@ -1,5 +1,6 @@
 package org.ok.vid.account.service;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomUtils;
 import org.ok.vid.account.model.Account;
 import org.ok.vid.account.repository.AccountRepository;
@@ -12,13 +13,10 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
+@RequiredArgsConstructor
 public class AccountService {
 
     private final AccountRepository accountRepository;
-
-    public AccountService(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
 
     public @NotNull List<Account> findAll() {
         Iterable<Account> items = accountRepository.findAll();

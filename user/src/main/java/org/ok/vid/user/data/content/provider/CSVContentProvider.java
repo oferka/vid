@@ -1,5 +1,6 @@
 package org.ok.vid.user.data.content.provider;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ok.vid.user.data.content.provider.properties.AccountIdProvider;
 import org.ok.vid.user.model.User;
@@ -12,16 +13,12 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 @Profile({"csv-content-provider", "default"})
 public class CSVContentProvider implements ContentProvider {
 
     private final CsvReader csvReader;
     private final AccountIdProvider accountIdProvider;
-
-    public CSVContentProvider(CsvReader csvReader, AccountIdProvider accountIdProvider) {
-        this.csvReader = csvReader;
-        this.accountIdProvider = accountIdProvider;
-    }
 
     @Override
     public @NotNull User get() {

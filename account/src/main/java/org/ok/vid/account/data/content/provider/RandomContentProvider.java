@@ -1,5 +1,6 @@
 package org.ok.vid.account.data.content.provider;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ok.vid.account.data.content.provider.properties.NameProvider;
 import org.ok.vid.account.data.content.provider.properties.SectorProvider;
@@ -14,18 +15,13 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 @Profile("random-content-provider")
 public class RandomContentProvider implements ContentProvider {
 
     private final SymbolProvider symbolProvider;
     private final NameProvider nameProvider;
     private final SectorProvider sectorProvider;
-
-    public RandomContentProvider(SymbolProvider symbolProvider, NameProvider nameProvider, SectorProvider sectorProvider) {
-        this.symbolProvider = symbolProvider;
-        this.nameProvider = nameProvider;
-        this.sectorProvider = sectorProvider;
-    }
 
     @Override
     public @NotNull Account get() {

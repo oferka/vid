@@ -1,5 +1,6 @@
 package org.ok.vid.user.service;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomUtils;
 import org.ok.vid.user.model.User;
 import org.ok.vid.user.repository.UserRepository;
@@ -13,13 +14,10 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public @NotNull List<User> findAll() {
         Iterable<User> items = userRepository.findAll();

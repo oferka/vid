@@ -1,5 +1,6 @@
 package org.ok.vid.user.data.content.health;
 
+import lombok.RequiredArgsConstructor;
 import org.ok.vid.user.service.UserService;
 import org.springframework.boot.actuate.autoconfigure.health.ConditionalOnEnabledHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
@@ -7,14 +8,11 @@ import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
 
 @Component("content")
+@RequiredArgsConstructor
 @ConditionalOnEnabledHealthIndicator("content")
 public class ContentHealthIndicator implements HealthIndicator {
 
     private final UserService userService;
-
-    public ContentHealthIndicator(UserService userService) {
-        this.userService = userService;
-    }
 
     @Override
     public Health health() {

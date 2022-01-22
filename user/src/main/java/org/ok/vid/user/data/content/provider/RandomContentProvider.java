@@ -1,5 +1,6 @@
 package org.ok.vid.user.data.content.provider;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ok.vid.user.data.content.provider.properties.*;
 import org.ok.vid.user.model.User;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 @Profile("random-content-provider")
 public class RandomContentProvider implements ContentProvider {
 
@@ -39,57 +41,6 @@ public class RandomContentProvider implements ContentProvider {
     private final UserThumbnailPictureProvider userThumbnailPictureProvider;
     private final UserNationalityProvider userNationalityProvider;
     private final AccountIdProvider accountIdProvider;
-
-    public RandomContentProvider(
-            UserGenderProvider userGenderProvider,
-            UserTitleProvider userTitleProvider,
-            UserFirstNameProvider userFirstNameProvider,
-            UserLastNameProvider userLastNameProvider,
-            UserStreetNumberProvider userStreetNumberProvider,
-            UserStreetNameProvider userStreetNameProvider,
-            UserCityProvider userCityProvider,
-            UserStateProvider userStateProvider,
-            UserCountryProvider userCountryProvider,
-            UserPostcodeProvider userPostcodeProvider,
-            UserLatitudeProvider userLatitudeProvider,
-            UserLongitudeProvider userLongitudeProvider,
-            UserTimezoneOffsetProvider userTimezoneOffsetProvider,
-            UserTimezoneDescriptionProvider userTimezoneDescriptionProvider,
-            UserEmailProvider userEmailProvider,
-            UserDateOfBirthProvider userDateOfBirthProvider,
-            UserDateOfRegistrationProvider userDateOfRegistrationProvider,
-            UserPhoneProvider userPhoneProvider,
-            UserCellProvider userCellProvider,
-            UserLargePictureProvider userLargePictureProvider,
-            UserMediumPictureProvider userMediumPictureProvider,
-            UserThumbnailPictureProvider userThumbnailPictureProvider,
-            UserNationalityProvider userNationalityProvider,
-            AccountIdProvider accountIdProvider) {
-        this.userGenderProvider = userGenderProvider;
-        this.userTitleProvider = userTitleProvider;
-        this.userFirstNameProvider = userFirstNameProvider;
-        this.userLastNameProvider = userLastNameProvider;
-        this.userStreetNumberProvider = userStreetNumberProvider;
-        this.userStreetNameProvider = userStreetNameProvider;
-        this.userCityProvider = userCityProvider;
-        this.userStateProvider = userStateProvider;
-        this.userCountryProvider = userCountryProvider;
-        this.userPostcodeProvider = userPostcodeProvider;
-        this.userLatitudeProvider = userLatitudeProvider;
-        this.userLongitudeProvider = userLongitudeProvider;
-        this.userTimezoneOffsetProvider = userTimezoneOffsetProvider;
-        this.userTimezoneDescriptionProvider = userTimezoneDescriptionProvider;
-        this.userEmailProvider = userEmailProvider;
-        this.userDateOfBirthProvider = userDateOfBirthProvider;
-        this.userDateOfRegistrationProvider = userDateOfRegistrationProvider;
-        this.userPhoneProvider = userPhoneProvider;
-        this.userCellProvider = userCellProvider;
-        this.userLargePictureProvider = userLargePictureProvider;
-        this.userMediumPictureProvider = userMediumPictureProvider;
-        this.userThumbnailPictureProvider = userThumbnailPictureProvider;
-        this.userNationalityProvider = userNationalityProvider;
-        this.accountIdProvider = accountIdProvider;
-    }
 
     @Override
     public @NotNull User get() {

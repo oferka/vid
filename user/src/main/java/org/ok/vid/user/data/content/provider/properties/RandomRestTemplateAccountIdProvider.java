@@ -1,5 +1,6 @@
 package org.ok.vid.user.data.content.provider.properties;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,11 @@ import static org.ok.vid.integration.ServiceAddresses.ACCOUNT_SERVICE_ADDRESS;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 @Profile({"random-rest-template-account-id-provider"})
 public class RandomRestTemplateAccountIdProvider extends RandomAccountIdProvider {
 
     private final RestTemplate restTemplate;
-
-    public RandomRestTemplateAccountIdProvider(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     @Override
     public @NotNull Long get() {

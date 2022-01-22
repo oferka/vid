@@ -3,6 +3,7 @@ package org.ok.vid.account.data.content.provider;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.enums.CSVReaderNullFieldIndicator;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -16,16 +17,13 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CsvReader {
 
     private final CsvLineReader csvLineReader;
 
     @Value("classpath:data/snp500.csv")
     private Resource file;
-
-    public CsvReader(CsvLineReader csvLineReader) {
-        this.csvLineReader = csvLineReader;
-    }
 
     public @NotNull List<AccountLine> read() {
         List<AccountLine> result = new ArrayList<>();
