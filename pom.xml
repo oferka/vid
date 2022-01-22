@@ -48,6 +48,7 @@
         <module>integration</module>
         <module>user-client</module>
         <module>base-client</module>
+        <module>gateway</module>
     </modules>
     <packaging>pom</packaging>
     <scm>
