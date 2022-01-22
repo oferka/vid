@@ -1,9 +1,16 @@
+server:
+  port: 0
+
 spring:
   application:
     name: "gateway"
-
-server:
-  port: 0
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: baeldung_route
+#          uri: http://baeldung.com
+#          predicates:
+#            - Path=/baeldung/
 
 eureka:
   client:

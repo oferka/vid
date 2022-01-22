@@ -1,3 +1,6 @@
+server:
+  port: 0
+
 spring:
   application:
     name: "account"
@@ -14,8 +17,6 @@ spring:
       settings:
         trace: false
         web-allow-others: false
-server:
-  port: 0
 
 eureka:
   client:
