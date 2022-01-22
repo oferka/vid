@@ -4,13 +4,6 @@ server:
 spring:
   application:
     name: "gateway"
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: baeldung_route
-#          uri: http://baeldung.com
-#          predicates:
-#            - Path=/baeldung/
 
 eureka:
   client:
@@ -50,3 +43,4 @@ logging:
   level:
     root: INFO
     org.ok.vid: INFO
+    org.springframework.cloud.gateway: DEBUG
