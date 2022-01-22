@@ -58,7 +58,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByGender() {
-        List<User> found = userService.findByGender(getNonExistingName());
+        List<User> found = userService.findByGender(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -75,7 +75,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByTitle() {
-        List<User> found = userService.findByTitle(getNonExistingName());
+        List<User> found = userService.findByTitle(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -92,7 +92,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByFirstName() {
-        List<User> found = userService.findByFirstName(getNonExistingName());
+        List<User> found = userService.findByFirstName(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -109,7 +109,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByLastName() {
-        List<User> found = userService.findByLastName(getNonExistingName());
+        List<User> found = userService.findByLastName(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -126,7 +126,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByStreetNumber() {
-        List<User> found = userService.findByStreetNumber(getNonExistingInteger());
+        List<User> found = userService.findByStreetNumber(NONE_EXISTING_INTEGER);
         assertTrue(found.isEmpty());
     }
 
@@ -143,7 +143,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByStreetName() {
-        List<User> found = userService.findByStreetName(getNonExistingName());
+        List<User> found = userService.findByStreetName(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -160,7 +160,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByCity() {
-        List<User> found = userService.findByCity(getNonExistingName());
+        List<User> found = userService.findByCity(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -177,7 +177,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByState() {
-        List<User> found = userService.findByState(getNonExistingName());
+        List<User> found = userService.findByState(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -194,7 +194,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByCountry() {
-        List<User> found = userService.findByCountry(getNonExistingName());
+        List<User> found = userService.findByCountry(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -211,7 +211,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByPostcode() {
-        List<User> found = userService.findByPostcode(getNonExistingName());
+        List<User> found = userService.findByPostcode(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -228,7 +228,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByLatitude() {
-        List<User> found = userService.findByLatitude(getNonExistingDouble());
+        List<User> found = userService.findByLatitude(NONE_EXISTING_DOUBLE);
         assertTrue(found.isEmpty());
     }
 
@@ -245,7 +245,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByLongitude() {
-        List<User> found = userService.findByLongitude(getNonExistingDouble());
+        List<User> found = userService.findByLongitude(NONE_EXISTING_DOUBLE);
         assertTrue(found.isEmpty());
     }
 
@@ -262,7 +262,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByTimezoneOffset() {
-        List<User> found = userService.findByTimezoneOffset(getNonExistingName());
+        List<User> found = userService.findByTimezoneOffset(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -279,7 +279,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByTimezoneDescription() {
-        List<User> found = userService.findByTimezoneDescription(getNonExistingName());
+        List<User> found = userService.findByTimezoneDescription(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -296,7 +296,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByEmail() {
-        List<User> found = userService.findByEmail(getNonExistingName());
+        List<User> found = userService.findByEmail(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -345,7 +345,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByPhone() {
-        List<User> found = userService.findByPhone(getNonExistingName());
+        List<User> found = userService.findByPhone(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -362,7 +362,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByCell() {
-        List<User> found = userService.findByCell(getNonExistingName());
+        List<User> found = userService.findByCell(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -379,7 +379,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByLargePicture() {
-        List<User> found = userService.findByLargePicture(getNonExistingName());
+        List<User> found = userService.findByLargePicture(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -396,7 +396,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByMediumPicture() {
-        List<User> found = userService.findByMediumPicture(getNonExistingName());
+        List<User> found = userService.findByMediumPicture(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -413,7 +413,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByThumbnailPicture() {
-        List<User> found = userService.findByThumbnailPicture(getNonExistingName());
+        List<User> found = userService.findByThumbnailPicture(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -430,7 +430,7 @@ public class UserServiceTest extends UserTest {
 
     @Test
     public void shouldNotFindByNationality() {
-        List<User> found = userService.findByNationality(getNonExistingName());
+        List<User> found = userService.findByNationality(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 

@@ -66,7 +66,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByGender() {
-        List<User> foundItems = userRepository.findByGender(getNonExistingName());
+        List<User> foundItems = userRepository.findByGender(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -83,7 +83,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByTitle() {
-        List<User> foundItems = userRepository.findByTitle(getNonExistingName());
+        List<User> foundItems = userRepository.findByTitle(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -100,7 +100,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByFirstName() {
-        List<User> foundItems = userRepository.findByFirstName(getNonExistingName());
+        List<User> foundItems = userRepository.findByFirstName(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -117,7 +117,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByLastName() {
-        List<User> foundItems = userRepository.findByLastName(getNonExistingName());
+        List<User> foundItems = userRepository.findByLastName(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -134,7 +134,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByStreetNumber() {
-        List<User> foundItems = userRepository.findByStreetNumber(getNonExistingInteger());
+        List<User> foundItems = userRepository.findByStreetNumber(NONE_EXISTING_INTEGER);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -151,7 +151,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByStreetName() {
-        List<User> foundItems = userRepository.findByStreetName(getNonExistingName());
+        List<User> foundItems = userRepository.findByStreetName(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -168,7 +168,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByCity() {
-        List<User> foundItems = userRepository.findByCity(getNonExistingName());
+        List<User> foundItems = userRepository.findByCity(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -185,7 +185,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByState() {
-        List<User> foundItems = userRepository.findByState(getNonExistingName());
+        List<User> foundItems = userRepository.findByState(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -202,7 +202,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByCountry() {
-        List<User> foundItems = userRepository.findByCountry(getNonExistingName());
+        List<User> foundItems = userRepository.findByCountry(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -219,7 +219,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByPostcode() {
-        List<User> foundItems = userRepository.findByPostcode(getNonExistingName());
+        List<User> foundItems = userRepository.findByPostcode(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -236,7 +236,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByLatitude() {
-        List<User> foundItems = userRepository.findByLatitude(getNonExistingDouble());
+        List<User> foundItems = userRepository.findByLatitude(NONE_EXISTING_DOUBLE);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -253,7 +253,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByLongitude() {
-        List<User> foundItems = userRepository.findByLongitude(getNonExistingDouble());
+        List<User> foundItems = userRepository.findByLongitude(NONE_EXISTING_DOUBLE);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -270,7 +270,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByTimezoneOffset() {
-        List<User> foundItems = userRepository.findByTimezoneOffset(getNonExistingName());
+        List<User> foundItems = userRepository.findByTimezoneOffset(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -287,7 +287,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByTimezoneDescription() {
-        List<User> foundItems = userRepository.findByTimezoneDescription(getNonExistingName());
+        List<User> foundItems = userRepository.findByTimezoneDescription(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -304,7 +304,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByEmail() {
-        List<User> foundItems = userRepository.findByEmail(getNonExistingName());
+        List<User> foundItems = userRepository.findByEmail(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -355,7 +355,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByPhone() {
-        List<User> foundItems = userRepository.findByPhone(getNonExistingName());
+        List<User> foundItems = userRepository.findByPhone(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -372,7 +372,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByCell() {
-        List<User> foundItems = userRepository.findByCell(getNonExistingName());
+        List<User> foundItems = userRepository.findByCell(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -389,7 +389,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByLargePicture() {
-        List<User> foundItems = userRepository.findByLargePicture(getNonExistingName());
+        List<User> foundItems = userRepository.findByLargePicture(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -406,7 +406,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByMediumPicture() {
-        List<User> foundItems = userRepository.findByMediumPicture(getNonExistingName());
+        List<User> foundItems = userRepository.findByMediumPicture(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -423,7 +423,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByThumbnailPicture() {
-        List<User> foundItems = userRepository.findByThumbnailPicture(getNonExistingName());
+        List<User> foundItems = userRepository.findByThumbnailPicture(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -440,7 +440,7 @@ public class UserRepositoryTest extends UserTest {
 
     @Test
     void shouldNotFindItemByNationality() {
-        List<User> foundItems = userRepository.findByNationality(getNonExistingName());
+        List<User> foundItems = userRepository.findByNationality(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
     @Test

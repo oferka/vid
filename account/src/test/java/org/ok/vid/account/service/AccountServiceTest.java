@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.ok.vid.TestDataUtils.NONE_EXISTING_NAME;
 import static org.ok.vid.TestDataUtils.getNonExistingId;
-import static org.ok.vid.TestDataUtils.getNonExistingName;
 
 class AccountServiceTest extends AccountTest {
 
@@ -56,7 +56,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldNotFindBySymbol() {
-        List<Account> found = accountService.findBySymbol(getNonExistingName());
+        List<Account> found = accountService.findBySymbol(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -73,7 +73,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldNotFindByName() {
-        List<Account> found = accountService.findByName(getNonExistingName());
+        List<Account> found = accountService.findByName(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 
@@ -90,7 +90,7 @@ class AccountServiceTest extends AccountTest {
 
     @Test
     public void shouldNotFindBySector() {
-        List<Account> found = accountService.findBySector(getNonExistingName());
+        List<Account> found = accountService.findBySector(NONE_EXISTING_NAME);
         assertTrue(found.isEmpty());
     }
 

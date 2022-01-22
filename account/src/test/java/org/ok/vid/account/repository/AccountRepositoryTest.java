@@ -14,8 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.ok.vid.TestDataUtils.getNonExistingId;
-import static org.ok.vid.TestDataUtils.getNonExistingName;
+import static org.ok.vid.TestDataUtils.*;
 
 class AccountRepositoryTest extends AccountTest {
 
@@ -65,7 +64,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldNotFindItemBySymbol() {
-        List<Account> foundItems = accountRepository.findBySymbol(getNonExistingName());
+        List<Account> foundItems = accountRepository.findBySymbol(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -82,7 +81,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldNotFindItemByName() {
-        List<Account> foundItems = accountRepository.findByName(getNonExistingName());
+        List<Account> foundItems = accountRepository.findByName(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
@@ -99,7 +98,7 @@ class AccountRepositoryTest extends AccountTest {
 
     @Test
     void shouldNotFindItemBySector() {
-        List<Account> foundItems = accountRepository.findByName(getNonExistingName());
+        List<Account> foundItems = accountRepository.findByName(NONE_EXISTING_NAME);
         assertTrue(foundItems.isEmpty());
     }
 
