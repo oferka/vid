@@ -14,7 +14,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.ok.vid.TestDataUtils.*;
+import static org.ok.vid.TestDataUtils.NONE_EXISTING_NAME;
+import static org.ok.vid.TestDataUtils.getNonExistingId;
 
 class AccountRepositoryTest extends AccountTest {
 
