@@ -3,7 +3,7 @@ spring:
     name: "gateway"
 
 server:
-  port: 9292
+  port: 0
 
 eureka:
   client:
