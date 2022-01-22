@@ -44,9 +44,6 @@ management:
           warning: 500
     shutdown:
       enabled: true
-  health:
-    content:
-      enabled: true
 
 info:
   app:
