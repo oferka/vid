@@ -19,16 +19,4 @@ public class GatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }
-
-    @Bean
-    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route(ACCOUNT_SERVICE_NAME, r -> r
-                        .path("/" + ACCOUNT_PATH + "/**")
-                        .uri("lb://" + ACCOUNT_SERVICE_NAME + "/" + ACCOUNT_PATH))
-                .route(USER_SERVICE_NAME, r -> r
-                        .path("/" + USER_PATH + "/**")
-                        .uri("lb://" + USER_SERVICE_NAME + "/" + USER_PATH))
-                .build();
-    }
 }
