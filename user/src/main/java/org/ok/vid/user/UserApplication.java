@@ -21,13 +21,13 @@ public class UserApplication {
     }
 
     @Bean
-    public CommandLineRunner ensureContentLoaded(ContentLoader contentLoader) {
+    CommandLineRunner ensureContentLoaded(ContentLoader contentLoader) {
         return args -> contentLoader.ensureContentLoaded();
     }
 
     @Bean
     @LoadBalanced
-    public RestTemplate defaultRestTemplate() {
+    RestTemplate defaultRestTemplate() {
         return new RestTemplate();
     }
 }

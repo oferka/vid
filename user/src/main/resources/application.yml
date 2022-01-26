@@ -60,7 +60,7 @@ logging:
     org.ok.vid: INFO
     org.hibernate.SQL: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: INFO
-    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.web.client.RestTemplate: INFO
 
 springdoc:
   show-actuator: true

@@ -16,7 +16,7 @@ public class AccountApplication {
     }
 
     @Bean
-    public CommandLineRunner ensureContentLoaded(ContentLoader contentLoader) {
+    CommandLineRunner ensureContentLoaded(ContentLoader contentLoader) {
         return args -> contentLoader.ensureContentLoaded();
     }
 }

@@ -1,5 +1,6 @@
 package org.ok.vid.account.controller;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -30,6 +31,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 public class AccountController {
 
     private final AccountService accountService;
+    private final MeterRegistry meterRegistry;
 
     @GetMapping
     @Operation(summary = "Find all accounts")
