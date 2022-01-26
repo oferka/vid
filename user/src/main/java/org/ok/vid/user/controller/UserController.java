@@ -23,6 +23,7 @@ import java.util.Optional;
 
 import static org.ok.vid.integration.Paths.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +35,7 @@ public class UserController {
     @GetMapping
     @Operation(summary = "Find all users")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Users successfully found", content = { @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class)))}),
+            @ApiResponse(responseCode = "200", description = "Users successfully found", content = { @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = User.class)))}),
             @ApiResponse(responseCode = "400", description = "Failed to find users", content = @Content) }
     )
     public @NotNull ResponseEntity<List<User>> findAll() {
@@ -44,7 +45,7 @@ public class UserController {
 
     @Operation(summary = "Find a user by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User successfully found by id", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
+            @ApiResponse(responseCode = "200", description = "User successfully found by id", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = User.class))}),
             @ApiResponse(responseCode = "404", description = "User with specified id was not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to find user by id", content = @Content) })
     @GetMapping(value = "{id}")
@@ -55,7 +56,7 @@ public class UserController {
 
     @Operation(summary = "Find a random user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Random user successfully found", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
+            @ApiResponse(responseCode = "200", description = "Random user successfully found", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = User.class))}),
             @ApiResponse(responseCode = "404", description = "Random user was not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to find a random user", content = @Content) })
     @GetMapping(path = RANDOM_PATH)
@@ -66,7 +67,7 @@ public class UserController {
 
     @Operation(summary = "Find a random user ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Random user ID successfully found", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))}),
+            @ApiResponse(responseCode = "200", description = "Random user ID successfully found", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Long.class))}),
             @ApiResponse(responseCode = "404", description = "Random user ID was not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to find a random user ID", content = @Content) })
     @GetMapping(path = RANDOM_ID_PATH)
@@ -77,7 +78,7 @@ public class UserController {
 
     @Operation(summary = "Create a user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "User created successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
+            @ApiResponse(responseCode = "201", description = "User created successfully", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = User.class))}),
             @ApiResponse(responseCode = "400", description = "Failed to create an user", content = @Content) })
     @PostMapping
     public @NotNull ResponseEntity<User> save(@Parameter(description = "User to be saved") @RequestBody @Valid @NotNull User user) {
@@ -110,7 +111,7 @@ public class UserController {
 
     @Operation(summary = "Update a user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User updated successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))}),
+            @ApiResponse(responseCode = "200", description = "User updated successfully", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = User.class))}),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to update user", content = @Content) })
     @PutMapping
@@ -121,7 +122,7 @@ public class UserController {
 
     @Operation(summary = "Return the number of existing users")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Users counted successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))}),
+            @ApiResponse(responseCode = "200", description = "Users counted successfully", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Long.class))}),
             @ApiResponse(responseCode = "400", description = "Failed to count users", content = @Content) })
     @GetMapping(path = COUNT_PATH)
     public @NotNull ResponseEntity<Long> count() {

@@ -1,6 +1,7 @@
 package org.ok.vid.account.controller;
 
-import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -24,6 +25,7 @@ import java.util.Optional;
 
 import static org.ok.vid.integration.Paths.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,12 +33,13 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 public class AccountController {
 
     private final AccountService accountService;
-    private final MeterRegistry meterRegistry;
 
     @GetMapping
+    @Timed(value = "AccountController.findAll.timer", description = "Timer for account findAll endpoint", extraTags = {"tag1.key", "tag1.value", "tag2.key", "tag2.value"}, percentiles = { 0.05,0.50, 0.95})
+    @Counted(value = "AccountController.findAll.counter", description = "Counter for account findAll endpoint", extraTags = {"tag1.key", "tag1.value", "tag2.key", "tag2.value"})
     @Operation(summary = "Find all accounts")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Accounts successfully found", content = { @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Account.class)))}),
+            @ApiResponse(responseCode = "200", description = "Accounts successfully found", content = { @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = Account.class)))}),
             @ApiResponse(responseCode = "400", description = "Failed to find accounts", content = @Content) }
     )
     public @NotNull ResponseEntity<List<Account>> findAll() {
@@ -46,7 +49,7 @@ public class AccountController {
 
     @Operation(summary = "Find an account by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Account successfully found by id", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Account.class))}),
+            @ApiResponse(responseCode = "200", description = "Account successfully found by id", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Account.class))}),
             @ApiResponse(responseCode = "404", description = "Account with specified id was not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to find account by id", content = @Content) })
     @GetMapping(value = "{id}")
@@ -57,7 +60,7 @@ public class AccountController {
 
     @Operation(summary = "Find a random account")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Random account successfully found", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Account.class))}),
+            @ApiResponse(responseCode = "200", description = "Random account successfully found", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Account.class))}),
             @ApiResponse(responseCode = "404", description = "Random account was not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to find a random account", content = @Content) })
     @GetMapping(path = RANDOM_PATH)
@@ -68,7 +71,7 @@ public class AccountController {
 
     @Operation(summary = "Find a random account ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Random account ID successfully found", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))}),
+            @ApiResponse(responseCode = "200", description = "Random account ID successfully found", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Long.class))}),
             @ApiResponse(responseCode = "404", description = "Random account ID was not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to find a random account ID", content = @Content) })
     @GetMapping(path = RANDOM_ID_PATH)
@@ -79,7 +82,7 @@ public class AccountController {
 
     @Operation(summary = "Create an account")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Account created successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Account.class))}),
+            @ApiResponse(responseCode = "201", description = "Account created successfully", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Account.class))}),
             @ApiResponse(responseCode = "400", description = "Failed to create an account", content = @Content) })
     @PostMapping
     public @NotNull ResponseEntity<Account> save(@Parameter(description = "Account to be saved") @RequestBody @Valid @NotNull Account account) {
@@ -112,7 +115,7 @@ public class AccountController {
 
     @Operation(summary = "Update an account")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Account updated successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Account.class))}),
+            @ApiResponse(responseCode = "200", description = "Account updated successfully", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Account.class))}),
             @ApiResponse(responseCode = "404", description = "Account not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Failed to update account", content = @Content) })
     @PutMapping
@@ -123,7 +126,7 @@ public class AccountController {
 
     @Operation(summary = "Return the number of existing accounts")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Accounts counted successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))}),
+            @ApiResponse(responseCode = "200", description = "Accounts counted successfully", content = { @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Long.class))}),
             @ApiResponse(responseCode = "400", description = "Failed to count accounts", content = @Content) })
     @GetMapping(path = COUNT_PATH)
     public @NotNull ResponseEntity<Long> count() {
