@@ -1,5 +1,7 @@
 package org.ok.vid.user.controller;
 
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -33,6 +35,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
+    @Timed(value = "UserController.findAll.timer", description = "Timer for user findAll endpoint", extraTags = {"tag1.key", "tag1.value", "tag2.key", "tag2.value"}, percentiles = { 0.05,0.50, 0.95})
+    @Counted(value = "UserController.findAll.counter", description = "Counter for user findAll endpoint", extraTags = {"tag1.key", "tag1.value", "tag2.key", "tag2.value"})
     @Operation(summary = "Find all users")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Users successfully found", content = { @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = User.class)))}),
