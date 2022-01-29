@@ -1,4 +1,4 @@
-package org.ok.vid.account;
+package org.ok.vid.gateway;
 
 import io.micrometer.core.aop.CountedAspect;
 import io.micrometer.core.instrument.MeterRegistry;

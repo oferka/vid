@@ -1,4 +1,4 @@
-package org.ok.vid.metric;
+package org.ok.vid.metrics;
 
 import io.micrometer.core.instrument.Tag;
 import org.springframework.core.env.Environment;

@@ -25,6 +25,13 @@ management:
           down: 500
           out_of_service: 503
           warning: 500
+    metrics:
+      enabled: true
+      export:
+        prometheus:
+          enabled: true
+    prometheus:
+      enabled: true
     shutdown:
       enabled: true
 

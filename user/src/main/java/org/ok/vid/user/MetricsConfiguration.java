@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
 
-import static org.ok.vid.metric.TagUtils.getCommonTags;
+import static org.ok.vid.metrics.TagUtils.getCommonTags;
 
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
