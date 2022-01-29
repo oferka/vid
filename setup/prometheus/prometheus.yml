@@ -9,21 +9,21 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     scrape_interval: 10s
     static_configs:
-      - targets: ['localhost:56220', 'localhost:56290']
+      - targets: ['localhost:58539', 'localhost:58631']
         labels:
           group: 'production'
   - job_name: 'user'
     metrics_path: '/actuator/prometheus'
     scrape_interval: 10s
     static_configs:
-      - targets: [ 'localhost:56386', 'localhost:56464' ]
+      - targets: [ 'localhost:58717', 'localhost:58799' ]
         labels:
           group: 'production'
   - job_name: 'gateway'
     metrics_path: '/actuator/prometheus'
     scrape_interval: 10s
     static_configs:
-      - targets: [ 'localhost:56521' ]
+      - targets: [ 'localhost:58855' ]
         labels:
           group: 'production'
   - job_name: 'service-registry'
