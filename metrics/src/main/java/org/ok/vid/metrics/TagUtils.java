@@ -9,8 +9,8 @@ public class TagUtils {
 
     public static Iterable<Tag> getCommonTags(Environment environment) {
         return List.of(
-                Tag.of("application.name", environment.getProperty("spring.application.name")),
-                Tag.of("instance-id", environment.getProperty("eureka.instance.instance-id"))
+                Tag.of("application", environment.getProperty("spring.application.name")),
+                Tag.of("instance", environment.getProperty("eureka.instance.instance-id"))
         );
     }
 }
