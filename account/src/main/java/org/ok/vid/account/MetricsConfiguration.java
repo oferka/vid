@@ -1,9 +1,11 @@
 package org.ok.vid.account;
 
 import io.micrometer.core.aop.CountedAspect;
+import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ok.vid.account.repository.AccountRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,5 +31,10 @@ public class MetricsConfiguration {
     @Bean
     CommandLineRunner configureMeterRegistry() {
         return args -> registry.config().commonTags(getCommonTags(environment));
+    }
+
+    @Bean
+    CommandLineRunner addEntityCountGauge(AccountRepository repository) {
+        return args -> Gauge.builder("account.entity.count", repository::count).register(registry);
     }
 }
