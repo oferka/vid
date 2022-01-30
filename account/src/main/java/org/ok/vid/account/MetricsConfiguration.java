@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
 
+import static org.ok.vid.integration.ServiceNames.ACCOUNT_SERVICE_NAME;
 import static org.ok.vid.metrics.TagUtils.getCommonTags;
 
 @Configuration
@@ -35,6 +36,6 @@ public class MetricsConfiguration {
 
     @Bean
     CommandLineRunner addEntityCountGauge(AccountRepository repository) {
-        return args -> Gauge.builder("account.entity.count", repository::count).register(registry);
+        return args -> Gauge.builder(ACCOUNT_SERVICE_NAME + ".entity.count", repository::count).register(registry);
     }
 }
