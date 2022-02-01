@@ -45,3 +45,5 @@ logging:
   level:
     root: INFO
     org.ok.vid: INFO
+    com.netflix.discovery: INFO
+    com.netflix.eureka.registry: INFO
