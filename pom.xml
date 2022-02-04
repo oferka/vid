@@ -50,6 +50,7 @@
         <module>base-client</module>
         <module>gateway</module>
         <module>metrics</module>
+        <module>service-registry-mapper</module>
     </modules>
     <packaging>pom</packaging>
     <scm>

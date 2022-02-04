@@ -1,7 +1,6 @@
 package org.ok.vid.integration;
 
-import static org.ok.vid.integration.ServiceNames.ACCOUNT_SERVICE_NAME;
-import static org.ok.vid.integration.ServiceNames.USER_SERVICE_NAME;
+import static org.ok.vid.integration.ServiceNames.*;
 
 public interface Paths {
 
@@ -16,4 +15,6 @@ public interface Paths {
     String ACCOUNT_PATH = BASE_PATH + ACCOUNT_SERVICE_NAME;
 
     String USER_PATH = BASE_PATH + USER_SERVICE_NAME;
+
+    String SERVICE_REGISTRY_MAPPER_PATH = BASE_PATH + SERVICE_REGISTRY_MAPPER_SERVICE_NAME;
 }
